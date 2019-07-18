@@ -1,0 +1,103 @@
+{
+    "name": "Christmas 2019",
+    "amount": 980.0,
+    "recipients": [
+        {
+            "name": "Logan",
+            "amount": 125.0,
+            "items": []
+        },
+        {
+            "name": "Bekah",
+            "amount": 125.0,
+            "items": []
+        },
+        {
+            "name": "Calvin",
+            "amount": 125.0,
+            "items": [
+                {
+                    "name": "Puzzle",
+                    "price": 20.81,
+                    "purchased": true
+                }
+            ]
+        },
+        {
+            "name": "Myles",
+            "amount": 125.0,
+            "items": [
+                {
+                    "name": "Puzzle",
+                    "price": 20.81,
+                    "purchased": true
+                },
+                {
+                    "name": "Test Item",
+                    "price": 9.99,
+                    "purchased": false
+                }
+            ]
+        },
+        {
+            "name": "Vince",
+            "amount": 40.0,
+            "items": []
+        },
+        {
+            "name": "Biz",
+            "amount": 40.0,
+            "items": []
+        },
+        {
+            "name": "Lauren",
+            "amount": 40.0,
+            "items": []
+        },
+        {
+            "name": "Sterling",
+            "amount": 40.0,
+            "items": []
+        },
+        {
+            "name": "[Nephew]",
+            "amount": 40.0,
+            "items": []
+        },
+        {
+            "name": "Molly",
+            "amount": 40.0,
+            "items": []
+        },
+        {
+            "name": "Josh",
+            "amount": 40.0,
+            "items": []
+        },
+        {
+            "name": "Phil",
+            "amount": 40.0,
+            "items": []
+        },
+        {
+            "name": "Jeanette",
+            "amount": 40.0,
+            "items": []
+        },
+        {
+            "name": "Eric",
+            "amount": 40.0,
+            "items": []
+        },
+        {
+            "name": "Erin",
+            "amount": 40.0,
+            "items": []
+        },
+        {
+            "name": "Lana",
+            "amount": 40.0,
+            "items": []
+        }
+    ]
+}

@@ -1,17 +1,24 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Budget v-bind:budget="budgets" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Budget from './components/Budget.vue'
+import Recipient from './components/Recipient.vue'
+import budgetsJson from './json/budgets.json'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Budget,
+    Recipient
+  },
+  data: function() {
+    return {
+      budgets: budgetsJson 
+    }    
   }
 }
 </script>
