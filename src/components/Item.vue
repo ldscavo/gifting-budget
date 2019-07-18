@@ -19,6 +19,7 @@ export default {
         width:80%;
         margin: 0 auto;
         border:1px solid #000;
+        padding:5px 10px;
     }
     .purchased {
         background-color: aquamarine;

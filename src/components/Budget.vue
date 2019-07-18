@@ -1,14 +1,16 @@
 <template>
     <div class="budget">
         <h1>{{ budget.name }}</h1>
-        <div class="amount">Total Amount Budgeted: {{ totalAmount() | currency }}</div>
-        <div class="spent">Total Spent: {{ totalSpent() | currency }}</div>
-        <div class="remaining">Remaining: {{ totalAmount() - totalSpent() | currency }}</div>
+        <div class="budget-details">
+            <div class="amount">Total Amount Budgeted: {{ totalAmount() | currency }}</div>
+            <div class="spent">Total Spent: {{ totalSpent() | currency }}</div>
+            <div class="remaining">Remaining: {{ totalAmount() - totalSpent() | currency }}</div>
         
+
             <Recipient v-for="recipient in budget.recipients"
                 v-bind:key="recipient.name"
-                v-bind:recipient="recipient" />
-        
+                v-bind:recipient="recipient" />   
+        </div>
     </div>
 </template>
 
@@ -37,8 +39,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-    margin: 40px 0 0;
+h1 {
+    color: #2c3e50;
 }
 ul {
     list-style-type: none;
@@ -54,5 +56,9 @@ a {
 .budget {
     max-width: 690px;
     margin:0 auto;
+}
+.budget-details {
+    background-color: #fff;
+    padding-top: 25px;
 }
 </style>

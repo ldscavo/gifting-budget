@@ -1,7 +1,7 @@
 <template>
     <div class="recipient">
         <div>
-            <h5>{{ recipient.name }}</h5>
+            <h3>{{ recipient.name }}</h3>
             <span>Spent: {{ totalSpent() | currency }} out of {{ recipient.amount | currency }}</span>
             <Item v-for="item in recipient.items"
                 v-bind:key="item.name"
@@ -43,5 +43,7 @@ export default {
 <style scoped>
     .recipient {
         border:1px solid #000;
+        margin:15px;
+        padding:5px;
     }
 </style>
