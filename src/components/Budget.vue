@@ -1,38 +1,25 @@
 <template>
-    <div class="budget">
-        <h1>{{ budget.name }}</h1>
-        <div class="budget-details">
-            <div class="amount">Total Amount Budgeted: {{ totalAmount() | currency }}</div>
-            <div class="spent">Total Spent: {{ totalSpent() | currency }}</div>
-            <div class="remaining">Remaining: {{ totalAmount() - totalSpent() | currency }}</div>
-        
-
-            <Recipient v-for="recipient in budget.recipients"
-                v-bind:key="recipient.name"
-                v-bind:recipient="recipient" />   
-        </div>
+    <div class="budget">        
+        <BudgetDetails v-bind:budget="budget" />
+        <Recipient v-for="recipient in budget.recipients"
+            v-bind:key="recipient.name"
+            v-bind:recipient="recipient" />        
     </div>
 </template>
 
 <script>
 import _ from 'lodash'
+import BudgetDetails from './BudgetDetails.vue'
 import Recipient from './Recipient.vue'
 
 export default {
     name: 'Budget',
     components: {
+        BudgetDetails,
         Recipient
     },
     props: {
         budget: Object
-    },
-    methods: {
-        totalAmount: function() {
-            return _.sumBy(this.budget.recipients, recipient => recipient.amount)
-        },
-        totalSpent: function() {
-            return _.sumBy(this.budget.recipients, recipient => _.sumBy(recipient.items, item => item.purchased ? item.price : 0))
-        }
     }
 }
 </script>
@@ -56,9 +43,7 @@ a {
 .budget {
     max-width: 690px;
     margin:0 auto;
-}
-.budget-details {
-    background-color: #fff;
     padding-top: 25px;
+    background-color: #fff;  
 }
 </style>
