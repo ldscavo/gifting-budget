@@ -6,6 +6,7 @@
             <Item v-for="item in recipient.items"
                 v-bind:key="item.name"
                 v-bind:item="item" />
+            <AddItem v-bind:items="recipient.items" />
         </div>
     </div>
 </template>
@@ -14,6 +15,7 @@
 import _ from 'lodash'
 
 import Item from './Item.vue'
+import AddItem from './AddItem.vue'
 
 export default {
     name: 'Recipient',
@@ -21,21 +23,12 @@ export default {
         recipient: Object
     },
     components: {
-        Item
+        Item, AddItem
     },
     methods: {
         totalSpent: function() {
             return _.sumBy(this.recipient.items, item => item.price)
-        },
-        addItem: function(name, price) {
-            var newItem = {
-                name: name,
-                price: price,
-                purchased: true
-            }
-
-            this.recipient.items.push(newItem)
-        }
+        }        
     }
 }
 </script>
