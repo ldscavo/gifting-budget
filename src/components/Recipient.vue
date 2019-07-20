@@ -1,13 +1,11 @@
 <template>
     <div class="recipient">
-        <div>
-            <h3>{{ recipient.name }}</h3>
-            <span>Spent: {{ totalSpent() | currency }} out of {{ recipient.amount | currency }}</span>
-            <Item v-for="item in recipient.items"
-                v-bind:key="item.name"
-                v-bind:item="item" />
-            <AddItem v-bind:items="recipient.items" />
-        </div>
+        <h3>{{ recipient.name }}</h3>
+        <span>Spent: {{ totalSpent() | currency }} out of {{ recipient.amount | currency }}</span>
+        <Item v-for="item in recipient.items"
+            v-bind:key="item.name"
+            v-bind:item="item" />
+        <AddItem v-bind:items="recipient.items" />
     </div>
 </template>
 
@@ -27,7 +25,7 @@ export default {
     },
     methods: {
         totalSpent: function() {
-            return _.sumBy(this.recipient.items, item => item.price)
+            return _.sumBy(this.recipient.items, item => item.purchased ? item.price : 0)
         }        
     }
 }

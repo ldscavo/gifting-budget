@@ -31,7 +31,7 @@ export default {
             return _.sumBy(this.budget.recipients, recipient => recipient.amount)
         },
         totalSpent: function() {
-            return _.sumBy(this.budget.recipients, recipient => _.sumBy(recipient.items, item => item.price))
+            return _.sumBy(this.budget.recipients, recipient => _.sumBy(recipient.items, item => item.purchased ? item.price : 0))
         }
     }
 }
