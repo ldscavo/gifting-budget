@@ -1,13 +1,13 @@
 <template>
     <div id="app">
-        <Budget v-bind:budget="budgets" />
+        <Budget v-bind:budget="budget" />
     </div>
 </template>
 
 <script>
 import Budget from './components/Budget.vue'
 import Recipient from './components/Recipient.vue'
-import budgetsJson from './json/budgets.json'
+import budgetJson from './json/budget.json'
 
 export default {
     name: 'app',
@@ -17,12 +17,14 @@ export default {
     },
     data: function() {
         return {
-            budgets: budgetsJson 
+            budget: budgetJson 
         }    
     },
     methods: {
         saveBudget: function() {
+            var store = window.localStorage;
 
+            store.setItem(budget.name, JSON.stringify(budget));
         }
     }
 }
