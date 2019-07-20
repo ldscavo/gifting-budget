@@ -5,6 +5,7 @@
         <Item v-for="item in recipient.items"
             v-bind:key="item.name"
             v-bind:item="item" />
+        <div v-if="recipient.items.length == 0"><em>Nothing here yet!</em></div>
         <AddItem v-bind:items="recipient.items" />
     </div>
 </template>
