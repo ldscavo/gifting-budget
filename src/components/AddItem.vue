@@ -60,9 +60,4 @@ export default {
 .add-item-field label {
     display: block;
 }
-.add-item-field button {
-    padding:5px 15px;
-    border:1px solid #000;
-    border-radius: 0.25rem;
-}
 </style>
