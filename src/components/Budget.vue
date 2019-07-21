@@ -3,7 +3,8 @@
         <BudgetDetails v-bind:budget="budget" />
         <Recipient v-for="recipient in budget.recipients"
             v-bind:key="recipient.name"
-            v-bind:recipient="recipient" />        
+            v-bind:recipient="recipient" />
+        <AddRecipient v-bind:recipients="budget.recipients" />
     </div>
 </template>
 
@@ -11,12 +12,14 @@
 import _ from 'lodash'
 import BudgetDetails from './BudgetDetails.vue'
 import Recipient from './Recipient.vue'
+import AddRecipient from './AddRecipient.vue'
 
 export default {
     name: 'Budget',
     components: {
         BudgetDetails,
-        Recipient
+        Recipient,
+        AddRecipient
     },
     props: {
         budget: Object

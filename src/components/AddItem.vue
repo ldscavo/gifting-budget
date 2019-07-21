@@ -1,14 +1,14 @@
 <template>
-    <form class="add-item" v-on:submit.prevent="addItem">
-        <div class="add-item-field">
+    <form class="add-entry" v-on:submit.prevent="addItem">
+        <div class="add-entry-field">
             <label for="item-name">Name:</label>
             <input type="text" v-model="name" id="item-name" placeholder="Item Name" />
         </div>
-        <div class="add-item-field">
+        <div class="add-entry-field">
             <label for="item-price">Price:</label>
             $<input type="number" v-model="price" id="item-price" step="0.01" />
         </div>   
-        <div class="add-item-field">
+        <div class="add-entry-field">
             <button type="submit">Add &raquo;</button>
         </div>
     </form>
@@ -46,18 +46,5 @@ export default {
 </script>
 
 <style scoped>
-.add-item {
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    /*border:1px solid #000;*/
-}
-.add-item-field {
-    padding:5px;
-    /*border:1px solid #000;*/
-}
-.add-item-field label {
-    display: block;
-}
+
 </style>

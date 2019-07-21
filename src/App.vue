@@ -48,4 +48,18 @@ button {
     text-align: center;
     color: #2c3e50;
 }
+.add-entry {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /*border:1px solid #000;*/
+}
+.add-entry-field {
+    padding:5px;
+    /*border:1px solid #000;*/
+}
+.add-entry-field label {
+    display: block;
+}
 </style>
