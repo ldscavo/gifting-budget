@@ -37,8 +37,14 @@ body {
 }
 button {
     padding:5px 15px;
-    border:1px solid #000;
+    color:#fafafa;
+    border:2px solid #43705b;
     border-radius: 0.25rem;
+    background-color: #5fa082;
+}
+button:hover {
+    background-color: #4c8068;
+    cursor: pointer;
 }
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

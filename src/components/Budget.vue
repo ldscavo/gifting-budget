@@ -47,6 +47,6 @@ a {
     max-width: 690px;
     margin:0 auto;
     padding-top: 25px;
-    background-color: #fff;  
+    background-color: #fafafa;  
 }
 </style>

@@ -30,7 +30,7 @@ export default {
     #main-header {
         width:100%;
         height: 75px;
-        background-color: deepskyblue;
+        background-color: #5f7ea0;
         display:flex;
         flex-direction: row;
         align-items: center;
@@ -43,10 +43,10 @@ export default {
         font-size: 2rem;
         margin-left:50px;
     }
-
     #site-logo a {
         font-weight: bold;
         text-decoration: none;
-        color: #2c3e50;
+        color: #fff;
+        text-shadow: 1px 1px #2c3e50;
     }
 </style>
