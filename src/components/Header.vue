@@ -28,9 +28,10 @@ export default {
 
 <style>
     #main-header {
+        border-bottom: 1px solid #389da0;
         width:100%;
         height: 75px;
-        background-color: #5f7ea0;
+        background-color: #42babd;
         display:flex;
         flex-direction: row;
         align-items: center;

@@ -34,6 +34,13 @@ export default {
 </script>
 
 <style scoped>
+.budget-details {    
+    border:1px solid #a2a2a2;
+    border-top: none;
+    /*box-shadow: 1px 2px #888;*/
+    background-color: #fafafa;
+    padding:15px 5px;
+}
 .over-budget {
     color:red;
     font-weight: bold;

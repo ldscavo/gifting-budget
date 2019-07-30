@@ -1,5 +1,6 @@
 <template>
-    <form class="add-entry" v-on:submit.prevent="addRecipient">
+    <form class="add-entry add-recipient" v-on:submit.prevent="addRecipient">
+        <h4>Add a Recipient</h4>
         <div class="add-entry-field">
             <label for="recipient-name">Name:</label>
             <input type="text" v-model="name" id="recipient-name" placeholder="recipient Name" />
@@ -42,5 +43,10 @@ export default {
 </script>
 
 <style>
-
+    .add-recipient {
+        max-width: 500px;
+        padding: 15px;
+        margin: 0 auto 100px;
+        background: #fefefe;
+    }
 </style>

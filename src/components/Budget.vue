@@ -44,9 +44,9 @@ a {
     color: #42b983;
 }
 .budget {
-    max-width: 690px;
+    max-width: 960px;
     margin:0 auto;
-    padding-top: 25px;
-    background-color: #fafafa;  
+    /*padding-top: 25px;*/
+    /*background-color: #fafafa;*/
 }
 </style>
