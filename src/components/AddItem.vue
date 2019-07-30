@@ -34,7 +34,7 @@ export default {
         addItem: function(event) {
             var self = this;
             
-            if (name != "" && price > 0) {
+            if (self.name != "" && self.price > 0) {
                 var newItem = { name: self.name, price: Number.parseFloat(self.price), purchased: true }
                 this.items.push(newItem)
                 this.clearItem()
