@@ -7,10 +7,14 @@
         <h3>{{ recipient.name }}</h3>
         <div v-if="!hidden">
             <span>Spent: {{ totalSpent() | currency }} out of {{ recipient.amount | currency }}</span>
-            <Item v-for="item in recipient.items"
-                v-bind:key="item.name"
-                v-bind:item="item" />
-            <div v-if="recipient.items.length == 0"><em>Nothing here yet!</em></div>
+            <div class="items-container">
+                <Item v-for="item in recipient.items"
+                    v-bind:key="item.name"
+                    v-bind:item="item" />
+                <div v-if="recipient.items.length == 0">
+                    <em>Nothing here yet!</em>
+                </div>
+            </div>
             <AddItem v-bind:items="recipient.items" />
         </div>
     </div>
@@ -53,6 +57,9 @@ export default {
         max-width:690px;
         margin:15px auto;
         padding:15px;
+    }
+    .items-container {
+        margin:15px 5px;
     }
     .showhide {
         border-radius:2px;

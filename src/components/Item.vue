@@ -17,9 +17,9 @@ export default {
 <style scoped>
     .item {
         width:80%;
-        margin: 0 auto;
+        margin: 5px auto;
         border:1px solid #000;
-        padding:5px 10px;
+        padding:10px 15px;
     }
     .purchased {
         background-color: aquamarine;
