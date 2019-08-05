@@ -6,7 +6,10 @@
         </div>
         <h3>{{ recipient.name }}</h3>
         <div v-if="!hidden">
-            <span>Spent: {{ totalSpent() | currency }} out of {{ recipient.amount | currency }}</span>
+            <span>
+                Spent: {{ totalSpent() | currency }} out of
+                $<input class="edit-field" type="text" pattern="[0-9]*[.,]?[0-9]?[0-9]?" v-model.number="recipient.amount" />
+            </span>
             <div class="items-container">
                 <Item v-for="item in recipient.items"
                     v-bind:key="item.name"
