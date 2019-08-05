@@ -68,4 +68,18 @@ button:hover {
 .add-entry-field label {
     display: block;
 }
+input.edit-field {    
+    color: #2c3e50;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-size:1rem;
+    border:none;
+    max-width: 125px;
+    /*padding:5px none 5px 5px;*/
+}
+input.edit-field:hover {
+    border:1px solid #a2a2a2;
+}
+input.edit-field:focus {
+    border:1px solid #2c3e50;
+}
 </style>
