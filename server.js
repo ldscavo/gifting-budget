@@ -5,7 +5,6 @@ var serveStatic = require('serve-static');
 app = express();
 var router = require('./api/router');
 app.use('/api', router)
-//const apiRoutes = require('./api/router')(app);
 
 app.use(serveStatic(__dirname + "/dist"));
 
