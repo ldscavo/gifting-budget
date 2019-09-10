@@ -10,9 +10,4 @@ module.exports = (router) => {
     router.post('/logout', (req, res) => {
         res.send('logout');
     });
-
-    router.post('/create-user-table', (req, res) => {
-        require('../queries/db-init');
-        createUserTable();
-    })
 }
