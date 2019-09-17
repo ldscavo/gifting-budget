@@ -6,12 +6,15 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "node server.js"
+    "start": "node server.js",
+    "db-init": "node api/db/db-init.js"
   },
   "dependencies": {
     "core-js": "^2.6.5",
     "express": "^4.17.1",
+    "knex": "^0.19.4",
     "lodash": "^4.17.14",
+    "pg": "^7.12.1",
     "reinstall": "^2.0.0",
     "vue": "^2.6.10"
   },

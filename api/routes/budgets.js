@@ -1,6 +1,10 @@
 module.exports = (app) => {
     app.get('/budgets', (req, res) => {
-        res.send('budget list!');
+        knex = require('../db/conn');
+        
+        knex.select().table('budgets').where('userId', 0)
+            .then(budgets => res.send(`budgets found: ${budgets.length}`))
+            .finally(() => knex.destroy());
     });
 
     app.post('/budgets', (req, res) => {
