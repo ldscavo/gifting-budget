@@ -6,10 +6,12 @@ module.exports = (router) => {
     router.post('/register', (req, res) => {
         if (req.body.password !== req.body.passwordconfirm) {
             res.status(400).send({ error: "Passwords do not match" });
+            return;
         }
         bcrypt.hash(req.body.password, rounds, (err, hash) => {
             if (err) {
                 res.status(400).send({error: "Could not save your user data"})
+                return;
             }
             knex('users').insert({
                 username: req.body.username,
@@ -27,7 +29,13 @@ module.exports = (router) => {
                 if (users.length == 0) {
                     res.status(400).send({error: "No user exists with that email"});
                 }
-                res.status(200).send(users[0])
+                bcrypt.compare(req.body.password, users[0].password, (err, matches) => {
+                    if (!matches) {
+                        res.status(400).send({error: "Incorrect password"});
+                        return;                     
+                    }
+                    res.json(users[0]);
+                });                
             });
     });
     
