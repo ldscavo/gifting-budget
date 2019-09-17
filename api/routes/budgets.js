@@ -1,6 +1,7 @@
 module.exports = (app) => {
+    var knex = require('knex')(require('../db/conn'));
+
     app.get('/budgets', (req, res) => {
-        knex = require('../db/conn');
         
         knex.select().table('budgets').where('userId', 0)
             .then(budgets => res.send(`budgets found: ${budgets.length}`))
