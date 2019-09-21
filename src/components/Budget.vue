@@ -1,6 +1,5 @@
 <template>
-    <div class="budget">        
-        <BudgetDetails v-bind:budget="budget" />
+    <div class="budget">
         <Recipient v-for="recipient in budget.recipients"
             v-bind:key="recipient.name"
             v-bind:recipient="recipient" />

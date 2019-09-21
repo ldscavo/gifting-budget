@@ -13,7 +13,7 @@
                 <button type="submit">Add &raquo;</button>
             </div>
         </form>    
-        <button v-if="!isAdding" v-on:click="openForm()">+ Add Item</button>
+        <button v-if="!isAdding" v-on:click="openForm()">+</button>
     </div>
 </template>
 

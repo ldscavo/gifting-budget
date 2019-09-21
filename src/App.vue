@@ -28,7 +28,7 @@ export default {
 
 <style>
 html {
-    background-color: #ddd ;
+    background-color: #fff ;
     width:100%;
 }
 body {
@@ -38,12 +38,14 @@ body {
 button {
     padding:5px 15px;
     color:#fafafa;
-    border:2px solid #973735;
-    border-radius: 0.25rem;
-    background-color: #bd4542;
+    border: none;
+    border-bottom:2px solid #114e86;
+    border-radius: 1rem;
+    background-color: #1e75c7;
 }
 button:hover {
-    background-color: #973735;
+    background-color: #175c9c;
+    border-bottom:2px solid #114e86;
     cursor: pointer;
 }
 #app {
