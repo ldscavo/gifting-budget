@@ -1,5 +1,6 @@
 module.exports = (router) => {
     var knex = require('knex')(require('../db/conn'));
+    var jwt = require('jsonwebtoken');
     var bcrypt = require('bcrypt');
     var rounds = parseInt(process.env.SALT_ROUNDS);
 
@@ -18,7 +19,11 @@ module.exports = (router) => {
                 email:req.body.email,
                 password:hash
             }, ['id'])
-                .then(id => res.status(200).send(id))
+                .then(id => {
+                    jwt.sign({userId: id}, process.env.PRIVATE_KEY, null, (err, token) => {
+                        res.json({token: token});
+                    });
+                })
                 .catch(err => res.sendStatus(400));
         });       
     });
@@ -34,7 +39,9 @@ module.exports = (router) => {
                         res.status(400).send({error: "Incorrect password"});
                         return;                     
                     }
-                    res.json(users[0]);
+                    jwt.sign({userId: users[0].Id}, process.env.PRIVATE_KEY, null, (err, token) => {
+                        res.json({token: token});
+                    });                    
                 });                
             });
     });
