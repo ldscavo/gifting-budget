@@ -2,10 +2,10 @@ module.exports = (app) => {
     var knex = require('knex')(require('../db/conn'));
 
     app.get('/budgets', (req, res) => {
+        var id = req.userId || 0;
         
-        knex.select().table('budgets').where('userId', 0)
-            .then(budgets => res.send(`budgets found: ${budgets.length}`))
-            .finally(() => knex.destroy());
+        knex.select().table('budgets').where('userId', id)
+            .then(budgets => res.send(`budgets found for id ${id}: ${budgets.length}`));
     });
 
     app.post('/budgets', (req, res) => {
