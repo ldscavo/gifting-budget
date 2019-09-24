@@ -1,4 +1,8 @@
-var knex = require('./conn');
+var knex = require('knex')({
+    client: 'pg',
+    connection: process.env.DATABASE_URL,
+    searchPath: ['knex', 'public'],
+});
 
 knex.schema.createTable('users', (table) => {
     table.increments('id').unsigned().primary();
@@ -45,4 +49,4 @@ knex.schema.createTable('items', (table) => {
     table.timestamps(false, true);
 }).then(() => {
     console.log('created the table items!')
-}).finally(() => knex.destroy());;
+}).finally(() => knex.destroy());
