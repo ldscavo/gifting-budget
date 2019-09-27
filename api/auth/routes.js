@@ -19,8 +19,8 @@ router.post('/register', (req, res) => {
             email: req.body.email,
             password: hash
         }, ['id'])
-            .then(id => {
-                jwt.sign({userId: id}, process.env.PRIVATE_KEY, (err, token) => {
+            .then(data => {
+                jwt.sign({userId: data[0].id}, process.env.PRIVATE_KEY, (err, token) => {
                     return res.json({token: token});
                 });
             })
