@@ -12,7 +12,7 @@ app.use('/api', require('./api/auth/routes'));
 app.use('/api', require('./api/auth/validate'));
 
 // All the other routes come in here!
-app.use('/api', require('./api/router'))
+app.use('/api', require('./api/routes'))
 
 // And lastly, the static site!
 app.use(serveStatic(__dirname + "/dist"));
