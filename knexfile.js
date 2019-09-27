@@ -4,11 +4,7 @@ module.exports = {
 
   development: {
     client: 'postgresql',
-    connection: {
-      host: 'localhost',
-      database: 'gifting-budget'
-    }
-    
+    connection: process.env.DATABASE_URL,    
   },
   production: {
     client: 'postgresql',
@@ -21,5 +17,4 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   }
-
 };
