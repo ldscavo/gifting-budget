@@ -17,7 +17,7 @@ app.use('/api/budgets/:id', require('./api/auth/validation/budget'));
 app.use('/api/', require('./api/routes/recipients'));
 
 app.use('/api/budgets/:budgetId/recipients/:id', require('./api/auth/validation/recipient'))
-//app.use('/api', require('./api/routes/items'));
+app.use('/api', require('./api/routes/items'));
 
 // And lastly, the static site!
 app.use(serveStatic(__dirname + "/dist"));
