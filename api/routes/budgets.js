@@ -3,10 +3,7 @@ module.exports = (router) => {
 
     router.get('/budgets', (req, res) => {
         knex('budgets').where({userId: req.userId})
-            .then(budgets => {
-                console.log(budgets)
-                res.json({data: budgets})
-            });
+            .then(budgets => res.json({data: budgets}));
     });
 
     router.get('/budgets/:id', (req, res) => {
@@ -25,17 +22,23 @@ module.exports = (router) => {
 
         knex('budgets').insert(budget).returning('*')
             .then(insertedBudget => res.status(201).json({data: insertedBudget[0]}))
-            .catch((err) => {
+            .catch(err => {
                 console.log(err);
                 res.status(400).json({error: 'failed to create budget'})
             });
     });   
 
-    router.put('/budgets/:budgetId', (req, res) => {
-        res.send(`editing the budget with id: ${req.params.budgetId}`);
+    router.patch('/budgets/:id', (req, res) => {
+        var newBudgetData = req.body;
+        knex('budgets').where({id: req.params.id, userId: req.userId})
+            .update(newBudgetData)
+            .returning('*')
+            .then(data => res.json({data}));    
     });
 
-    router.delete('/budgets/:budgetId', (req, res) => {
-        res.send(`deleting the budget with id: ${req.params.budgetId}`);
+    router.delete('/budgets/:id', (req, res) => {
+        knex('budgets').where({id: req.params.id, userId: req.userId})
+            .del()
+            .then(() => res.sendStatus(204));
     });
 }
