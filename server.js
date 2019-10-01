@@ -12,7 +12,20 @@ app.use('/api', require('./api/auth/routes'));
 app.use('/api', require('./api/auth/validate'));
 
 // All the other routes come in here!
-app.use('/api', require('./api/routes'))
+app.use('/api', require('./api/routes/budgets'))
+
+app.use('/api/budgets/:id', (req, res, next) => {
+    var knex = require('knex')(require('./api/db/conn'));
+    knex('budgets').where({ id: req.params.id, userId: req.userId }).first()
+        .then(budget => {
+            if (!budget) {
+                return res.status(404).json({ error: 'not found' });
+            }
+            return next();
+        });
+});
+
+app.use('/api/', require('./api/routes/recipients'));
 
 // And lastly, the static site!
 app.use(serveStatic(__dirname + "/dist"));
