@@ -16,6 +16,7 @@ app.use('/api', require('./api/routes/budgets'))
 app.use('/api/budgets/:id', require('./api/auth/validation/budget'));
 app.use('/api/', require('./api/routes/recipients'));
 
+// Validate and add the item api routes
 app.use('/api/budgets/:budgetId/recipients/:id', require('./api/auth/validation/recipient'))
 app.use('/api', require('./api/routes/items'));
 
