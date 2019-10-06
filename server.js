@@ -20,6 +20,11 @@ app.use('/api/', require('./api/routes/recipients'));
 app.use('/api/budgets/:budgetId/recipients/:id', require('./api/auth/validation/recipient'))
 app.use('/api', require('./api/routes/items'));
 
+// All other api endpoint events get a 404
+app.use('/api', (req, res, next) => {
+    return res.status(404).json({error:"invalid endpoint"})
+});
+
 // And lastly, the static site!
 app.use(serveStatic(__dirname + "/dist"));
 
