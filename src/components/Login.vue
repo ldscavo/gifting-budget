@@ -35,7 +35,7 @@ export default {
             auth.login(self.email, self.password)
                 .then(response => {
                     localStorage.setItem("token", response.data.token);
-                    self.$router.push({ path: '/budget/4' })
+                    self.$router.push({ path: '/budgets' })
                 });
         }
     }

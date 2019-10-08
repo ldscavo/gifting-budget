@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import App from './App.vue'
 import Budget from './components/Budget'
+import BudgetList from './components/BudgetList'
 import Login from './components/Login'
 import "./filters"
 
@@ -11,8 +12,9 @@ Vue.use(Router)
 
 var router = new Router({
   routes: [
-    { path: '/', component: Login },
-    { path: '/budget/:id', component: Budget }
+    { name: 'login', path: '/', component: Login },
+    { name: 'budget-list', path: '/budgets', component: BudgetList },
+    { name:'budget', path: '/budget/:id', component: Budget }
   ]
 })
 
