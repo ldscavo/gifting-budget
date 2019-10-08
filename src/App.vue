@@ -1,7 +1,8 @@
 <template>
     <div id="app">
         <Header v-bind:budget="budget" />
-        <Budget v-bind:budget="budget" />
+        <!--<Budget v-bind:budget="budget" />-->
+        <router-view></router-view>
     </div>
 </template>
 
