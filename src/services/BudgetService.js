@@ -4,5 +4,5 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem(
 
 export default {
     getAllBudgets: () => axios.get('/api/budgets'),
-    getBudget: (id) => axios.get(`/api/budgets/${id}`)    
+    getBudget: (id) => axios.get(`/api/budgets/${id}?expand=1`)
 }
