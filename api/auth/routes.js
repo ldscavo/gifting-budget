@@ -24,7 +24,7 @@ router.post('/register', (req, res) => {
                     return res.json({token: token});
                 });
             })
-            .catch(err => res.sendStatus(400));
+            .catch(err => res.status(400).json({error: "Email already exists!"}));
     });       
 });
 

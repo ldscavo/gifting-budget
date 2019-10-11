@@ -14,9 +14,31 @@ router.get('/budgets/:id', (req, res) => {
             if (!budget) {
                 return res.status(404).json({ error: 'budget not found' })
             }
-            return res.json({ data: budget })
+            if (req.query.expand) {
+                return expandBudget(req, res, budget);
+            } else {
+                return res.json({ data: budget });
+            }            
         });
 });
+
+function expandBudget(req, res, budget) {
+    knex('recipients')
+        .where({budgetId: budget.id})
+        .then(recipients => {
+            recipients.forEach(recipient => {
+                knex('items')
+                    .where({recipientId: recipient.id})
+                    .then(items => {
+                        recipient.items = items;
+                    })
+                    .finally(() => {
+                        budget.recipients = recipients;
+                        return res.json({data: budget});
+                    });
+            });            
+        });
+}
 
 router.post('/budgets', (req, res) => {
     var budget = req.body;
