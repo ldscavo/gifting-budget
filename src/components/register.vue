@@ -1,7 +1,7 @@
 <template>
-    <div id="form-page">
-        <form v-on:submit="login">
-            <h2>Login</h2>
+  <div id="form-page">
+        <form v-on:submit="register">
+            <h2>Register</h2>
             <div class="form-section">
                 <label for="email">Email:</label>
                 <input id="email" class="form-input text" v-model="email" placeholder="email@example.com" />
@@ -11,10 +11,12 @@
                 <input id="password" class="form-input text" v-model="password" type="password" />
             </div>
             <div class="form-section">
-                <button type="submit" class="form-input">Login &raquo;</button>                
+                <label for="passwordconfirm">Confirm Password:</label>
+                <input id="passwordconfirm" class="form-input text" v-model="passwordconfirm" type="password" />
+                <div class="warning" v-if="password !== passwordconfirm">Passwords do not match!</div>
             </div>
             <div class="form-section">
-                <router-link v-bind:to="{ name: 'register' }">No account? Click here to register!</router-link>
+                <button type="submit" class="form-input">Register &raquo;</button>
             </div>
         </form>
     </div>    
@@ -24,22 +26,24 @@
 import auth from '../services/AuthService';
 
 export default {
-    name: 'Login',
+    name: 'register',
     data: function() {
         return {
-            email: "",
-            password: ""
+            email: '',
+            password: '',
+            passwordconfirm: ''
         }
     },
     methods: {
-        login: function() {
+        register: function() {
             var self = this;
 
-            auth.login(self.email, self.password)
+            auth.register(self.email, self.password, self.passwordconfirm)
                 .then(response => {
                     localStorage.setItem("token", response.data.token);
                     self.$router.push({ path: '/budgets' })
-                });
+                })
+                .catch(error => alert(error.response.data.error));
         }
     }
 }
