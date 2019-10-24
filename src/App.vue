@@ -7,15 +7,13 @@
 
 <script>
 import Header from './components/Header.vue'
-import Budget from './components/Budget.vue'
 import Recipient from './components/Recipient.vue'
 import budgetJson from './json/budget.json'
 
 export default {
     name: 'app',
     components: {
-        Header, 
-        Budget,
+        Header,
         Recipient
     },
     data: function() {
@@ -81,5 +79,31 @@ input.edit-field:hover {
 }
 input.edit-field:focus {
     border:1px solid #2c3e50;
+}
+.warning {
+    color: red;
+}
+#form-page {
+    max-width: 650px;
+    margin:0 auto;
+
+    border:1px solid #a2a2a2;
+    border-top: none;
+    
+    background-color: #fafafa;
+    padding:15px 5px;
+}
+.form-input {
+    font-size: 1rem;
+    padding:5px 10px;
+}
+.form-input.text {
+    width: 225px;
+}
+.form-section {
+    padding:10px 15px;
+}
+.form-section label {
+    display: block;
 }
 </style>

@@ -4,8 +4,10 @@
             <a href="#">Gift Budget</a>            
         </div>
         <div>
+            <!--
             <span id="save"><button v-bind:click="saveBudget()">SAVE</button></span>
             <span id="load"><button>LOAD</button></span>
+            -->
         </div>        
     </div>
 </template>
