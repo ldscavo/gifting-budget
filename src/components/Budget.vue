@@ -12,6 +12,7 @@ import _ from 'lodash'
 import BudgetDetails from './BudgetDetails.vue'
 import Recipient from './Recipient.vue'
 import AddRecipient from './AddRecipient.vue'
+import budgetService from '../services/BudgetService'
 
 export default {
     name: 'Budget',
@@ -21,7 +22,16 @@ export default {
         AddRecipient
     },
     props: {
-        budget: Object
+        id: Number
+    },
+    data: function () { 
+        return { budget: null }
+    },
+    mounted: function() {
+        var self = this;
+
+        budgetService.getBudget(self.$route.params.id)
+            .then(response => self.budget = response.data.data);
     }
 }
 </script>
