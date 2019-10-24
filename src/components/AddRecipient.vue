@@ -17,7 +17,7 @@
 
 <script>
 export default {
-    name: "AddRecipient",
+    name: "addRecipient",
     props: {
         recipients: Array
     },

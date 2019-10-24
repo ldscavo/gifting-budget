@@ -21,10 +21,10 @@
 </template>
 
 <script>
-import auth from '../services/AuthService';
+import auth from '../services/authService';
 
 export default {
-    name: 'Login',
+    name: 'login',
     data: function() {
         return {
             email: "",

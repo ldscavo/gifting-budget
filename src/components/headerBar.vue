@@ -14,7 +14,7 @@
 
 <script>
 export default {
-    name: "Header",
+    name: "headerBar",
     props: {
         budget: Object
     },

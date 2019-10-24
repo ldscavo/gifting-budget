@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import budgetService from '../services/BudgetService';
+import budgetService from '../services/budgetService';
 
 export default {
-    name: 'BudgetList',
+    name: 'budgetList',
     data: function() {
         return {
             budgets: []

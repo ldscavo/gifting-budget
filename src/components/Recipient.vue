@@ -11,14 +11,14 @@
                 $<input class="edit-field" type="text" pattern="[0-9]*[.,]?[0-9]?[0-9]?" v-model.number="recipient.amount" />
             </span>
             <div class="items-container">
-                <Item v-for="item in recipient.items"
+                <item v-for="item in recipient.items"
                     v-bind:key="item.name"
                     v-bind:item="item" />
                 <div v-if="recipient.items.length == 0">
                     <em>Nothing here yet!</em>
                 </div>
             </div>
-            <AddItem v-bind:items="recipient.items" />
+            <add-item v-bind:items="recipient.items" />
         </div>
     </div>
 </template>
@@ -26,16 +26,17 @@
 <script>
 import _ from 'lodash'
 
-import Item from './Item.vue'
-import AddItem from './AddItem.vue'
+import item from './item'
+import addItem from './addItem'
 
 export default {
-    name: 'Recipient',
+    name: 'recipient',
     props: {
         recipient: Object
     },
     components: {
-        Item, AddItem
+        item,
+        addItem
     },
     data: function(){
         return {

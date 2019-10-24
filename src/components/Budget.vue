@@ -1,26 +1,26 @@
 <template>
     <div class="budget">        
-        <BudgetDetails v-bind:budget="budget" />
-        <Recipient v-for="recipient in budget.recipients"
+        <budget-details v-bind:budget="budget" />
+        <recipient v-for="recipient in budget.recipients"
             v-bind:key="recipient.name"
             v-bind:recipient="recipient" />
-        <AddRecipient v-bind:recipients="budget.recipients" />
+        <add-recipient v-bind:recipients="budget.recipients" />
     </div>
 </template>
 
 <script>
 import _ from 'lodash'
-import BudgetDetails from './BudgetDetails.vue'
-import Recipient from './Recipient.vue'
-import AddRecipient from './AddRecipient.vue'
-import budgetService from '../services/BudgetService'
+import budgetDetails from './budgetDetails'
+import recipient from './recipient'
+import addRecipient from './addRecipient'
+import budgetService from '../services/budgetService'
 
 export default {
-    name: 'Budget',
+    name: 'budget',
     components: {
-        BudgetDetails,
-        Recipient,
-        AddRecipient
+        budgetDetails,
+        recipient,
+        addRecipient
     },
     props: {
         id: Number
