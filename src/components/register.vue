@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import auth from '../services/AuthService';
+import auth from '../services/authService';
 
 export default {
     name: 'register',

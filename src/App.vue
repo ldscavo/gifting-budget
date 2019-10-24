@@ -1,25 +1,19 @@
 <template>
     <div id="app">
-        <Header v-bind:budget="budget" />
+        <header-bar />
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Recipient from './components/Recipient.vue'
-import budgetJson from './json/budget.json'
+import headerBar from './components/headerBar'
+import recipient from './components/recipient'
 
 export default {
     name: 'app',
     components: {
-        Header,
-        Recipient
-    },
-    data: function() {
-        return {
-            budget: budgetJson 
-        }    
+        headerBar,
+        recipient
     }
 }
 </script>

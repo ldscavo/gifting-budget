@@ -15,7 +15,7 @@
 
 <script>
 export default {
-    name: "BudgetDetails",
+    name: "budgetDetails",
     props: {
         budget: Object
     },

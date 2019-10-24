@@ -19,7 +19,7 @@
 
 <script>
 export default {
-    name: "AddItem",
+    name: "addItem",
     props: {
         items: Array
     },
