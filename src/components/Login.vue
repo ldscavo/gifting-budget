@@ -39,7 +39,8 @@ export default {
                 .then(response => {
                     localStorage.setItem("token", response.data.token);
                     self.$router.push({ path: '/budgets' })
-                });
+                })
+                .catch(error => alert(error.response.data.error));
         }
     }
 }
