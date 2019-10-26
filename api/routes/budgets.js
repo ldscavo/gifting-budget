@@ -26,6 +26,10 @@ function expandBudget(req, res, budget) {
     knex('recipients')
         .where({budgetId: budget.id})
         .then(recipients => {
+            if (recipients.length === 0) {                
+                budget.recipients = [];
+                return res.json({data: budget});
+            }
             recipients.forEach(recipient => {
                 knex('items')
                     .where({recipientId: recipient.id})

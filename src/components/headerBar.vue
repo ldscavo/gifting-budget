@@ -1,7 +1,7 @@
 <template>
     <div id="main-header">
         <div id="site-logo">
-            <a href="#">Gift Budget</a>            
+            <router-link v-bind:to="{ name: 'budget-list' }">Gift Budget</router-link>
         </div>
         <div>
             <!--
@@ -51,5 +51,8 @@ export default {
         text-decoration: none;
         color: #fff;
         text-shadow: 1px 1px #2c3e50;
+    }
+    #site-logo a:hover {
+        border: none;
     }
 </style>
