@@ -27,6 +27,14 @@ body {
     padding:0;
     margin:0;
 }
+a {
+    color: #973735;
+    text-decoration: none;
+    font-weight:bold;
+}
+a:hover {
+    border-bottom: 2px solid #973735;
+}
 button {
     padding:5px 15px;
     color:#fafafa;

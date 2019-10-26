@@ -52,4 +52,7 @@ export default {
         color: #fff;
         text-shadow: 1px 1px #2c3e50;
     }
+    #site-logo a:hover {
+        border: none;
+    }
 </style>

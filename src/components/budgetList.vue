@@ -1,30 +1,56 @@
 <template>
-    <div id="budget-list">
-        <div v-for="budget in budgets" v-bind:key="budget.id" class="budget">
-            <router-link v-bind:to="{ name: 'budget', params: {id: budget.id }}">{{ budget.name }}</router-link>
+    <div id="budget-list-container">
+        <h1>My Budgets</h1>
+        <div id="budget-list">            
+            <budget-card v-for="budget in budgets"
+                v-bind:key="budget.id"
+                v-bind:budget="budget" />
         </div>
+        <add-budget />
     </div>
 </template>
 
 <script>
 import budgetService from '../services/budgetService';
+import budgetCard from './budgetCard'
+import addBudget from './addBudget'
 
 export default {
     name: 'budgetList',
     data: function() {
         return {
-            budgets: []
+            budgets: [
+                {id: 1, name: "Test Budget I"},
+                {id: 2, name: "Test Budget II"},
+                {id: 2, name: "Test Budget II"},
+                {id: 2, name: "Test Budget II"},
+                {id: 2, name: "Test Budget II"},
+                {id: 2, name: "Test Budget II"},
+                {id: 2, name: "Test Budget II"}
+            ]
         }
+    },
+    components: {
+        budgetCard,
+        addBudget
     },
     mounted: function() {
         var self = this;
 
-        budgetService.getAllBudgets()
+        budgetService.getAllBudgets()            
             .then(response => self.budgets = response.data.data);
     }
 }
 </script>
-
-<style>
-
+<style scoped>
+    #budget-list-container {
+        margin: 0 auto;
+        max-width: 960px;
+    }
+    #budget-list {
+        padding:15px 50px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 </style>
