@@ -1,7 +1,7 @@
 <template>
     <div id="main-header">
         <div id="site-logo">
-            <a href="#">Gift Budget</a>            
+            <router-link v-bind:to="{ name: 'budget-list' }">Gift Budget</router-link>
         </div>
         <div>
             <!--
