@@ -19,15 +19,7 @@ export default {
     name: 'budgetList',
     data: function() {
         return {
-            budgets: [
-                {id: 1, name: "Test Budget I"},
-                {id: 2, name: "Test Budget II"},
-                {id: 2, name: "Test Budget II"},
-                {id: 2, name: "Test Budget II"},
-                {id: 2, name: "Test Budget II"},
-                {id: 2, name: "Test Budget II"},
-                {id: 2, name: "Test Budget II"}
-            ]
+            budgets: []
         }
     },
     components: {
