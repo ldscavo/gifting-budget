@@ -1,10 +1,17 @@
 <template>
-    <div class="budget">        
+<div>
+    <div class="budget" v-if="budget !== null">        
         <budget-details v-bind:budget="budget" />
-        <recipient v-for="recipient in budget.recipients"
+        <recipient
+            v-for="recipient in budget.recipients"
             v-bind:key="recipient.name"
-            v-bind:recipient="recipient" />
-        <add-recipient v-bind:recipients="budget.recipients" />
+            v-bind:recipient="recipient"
+            v-bind:budgetId="budget.id" />
+        <add-recipient
+            v-bind:recipients="budget.recipients"
+            v-bind:budgetId="budget.id" />
+    </div>
+    <img src="../assets/loading.gif" v-if="budget === null" />
     </div>
 </template>
 
@@ -32,7 +39,9 @@ export default {
         var self = this;
 
         budgetService.getBudget(self.$route.params.id)
-            .then(response => self.budget = response.data.data);
+            .then(response => {
+                self.budget = response.data.data;
+            });
     }
 }
 </script>

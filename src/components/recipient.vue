@@ -10,7 +10,7 @@
                 Spent: {{ totalSpent() | currency }} out of
                 $<input class="edit-field" type="text" pattern="[0-9]*[.,]?[0-9]?[0-9]?" v-model.number="recipient.amount" />
             </span>
-            <div class="items-container">
+            <div class="items-container" v-if="recipient.items">
                 <item v-for="item in recipient.items"
                     v-bind:key="item.name"
                     v-bind:item="item" />
@@ -18,7 +18,10 @@
                     <em>Nothing here yet!</em>
                 </div>
             </div>
-            <add-item v-bind:items="recipient.items" />
+            <add-item
+                v-bind:items="recipient.items"
+                v-bind:budgetId="budgetId" 
+                v-bind:recipientId="recipient.id" />
         </div>
     </div>
 </template>
@@ -32,7 +35,8 @@ import addItem from './addItem'
 export default {
     name: 'recipient',
     props: {
-        recipient: Object
+        recipient: Object,
+        budgetId: Number
     },
     components: {
         item,
