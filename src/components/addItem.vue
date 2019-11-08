@@ -48,7 +48,7 @@ export default {
         },
         clear() {
             this.name = "";
-            this.amount = 0.00;
+            this.price = 0.00;
         },
         openForm: function() {
             this.isAdding = true
