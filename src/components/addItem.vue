@@ -18,10 +18,14 @@
 </template>
 
 <script>
+import itemService from '../services/itemService';
+
 export default {
     name: "addItem",
     props: {
-        items: Array
+        items: Array,
+        budgetId: Number,
+        recipientId: Number
     },
     data: function() {
         return {
@@ -31,18 +35,20 @@ export default {
         }
     },
     methods: {
-        addItem: function(event) {
-            var self = this;
-            
+        addItem(event) {
+            let self = this;
+
             if (self.name != "" && self.price > 0) {
-                var newItem = { name: self.name, price: Number.parseFloat(self.price), purchased: true }
-                this.items.push(newItem)
-                this.clearItem()
-            }            
+                itemService.createItem(self.budgetId, self.recipientId, self.name, self.price)
+                    .then(response => {
+                        self.items.push(response.data.data);
+                        self.clear();
+                    });
+            } 
         },
-        clearItem: function() {
-            this.name = ""
-            this.price = 0.00
+        clear() {
+            this.name = "";
+            this.price = 0.00;
         },
         openForm: function() {
             this.isAdding = true
@@ -50,7 +56,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

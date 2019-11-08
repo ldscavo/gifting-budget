@@ -24,7 +24,10 @@ router.post('/budgets/:budgetId/recipients', (req, res) => {
     recipient.budgetId = req.params.budgetId;
 
     knex('recipients').insert(recipient).returning('*')
-        .then(insertedRecipient => res.status(201).json({ data: insertedRecipient[0] }))
+        .then(insertedRecipient => {
+            insertedRecipient[0].items = [];
+            res.status(201).json({ data: insertedRecipient[0] })
+        })
         .catch(err => {
             console.log(err);
             res.status(400).json({ error: 'failed to create recipient' })

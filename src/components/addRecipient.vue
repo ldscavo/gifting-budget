@@ -16,10 +16,13 @@
 </template>
 
 <script>
+import recipientService from '../services/recipientService';
+
 export default {
     name: "addRecipient",
     props: {
-        recipients: Array
+        recipients: Array,
+        budgetId: Number
     },
     data: function() {
         return {
@@ -29,14 +32,19 @@ export default {
     },
     methods: {
         addRecipient(event) {
-            var name = this.name
-            var amount = this.amount
+            let self = this;
 
-            if (name != "" && amount > 0) {
-                var newRecipient = { name: name, amount: amount, items: [] }
-                this.recipients.push(newRecipient)
-                this.clearItem()
+            if (self.name != "" && self.amount > 0) {
+                recipientService.createRecipient(self.budgetId, self.name, self.amount)
+                    .then(response => {
+                        self.recipients.push(response.data.data);
+                        self.clear();
+                    });
             } 
+        },
+        clear() {
+            this.name = "";
+            this.amount = 0.00;
         }
     }
 }
