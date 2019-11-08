@@ -21,10 +21,10 @@ export default {
     },
     methods: {
         totalAmount: function() {
-            return _.sumBy(this.budget.recipients, recipient => recipient.amount !== '' ? recipient.amount : 0)
+            return _.sumBy(this.budget.recipients, recipient => recipient.amount !== '' ? parseFloat(recipient.amount) : 0)
         },
         totalSpent: function() {
-            return _.sumBy(this.budget.recipients, recipient => _.sumBy(recipient.items, item => item.purchased ? item.price : 0))
+            return _.sumBy(this.budget.recipients, recipient => _.sumBy(recipient.items, item => item.purchased ? parseFloat(item.price) : 0))
         },
         remainingBalance: function() {
             return this.totalAmount() - this.totalSpent()

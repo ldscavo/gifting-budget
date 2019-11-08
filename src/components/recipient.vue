@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         totalSpent: function() {
-            return _.sumBy(this.recipient.items, item => item.purchased ? item.price : 0)
+            return _.sumBy(this.recipient.items, item => item.purchased ? parseFloat(item.price) : 0)
         },
         showhide() {
             this.hidden = !this.hidden;
