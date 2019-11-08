@@ -62,7 +62,10 @@ router.post('/budgets', (req, res) => {
     budget.userId = req.userId;
 
     knex('budgets').insert(budget).returning('*')
-        .then(insertedBudget => res.status(201).json({ data: insertedBudget[0] }))
+        .then(insertedBudget => {
+            insertedBudget[0].recipients = [];
+            res.status(201).json({ data: insertedBudget[0] })
+        })
         .catch(err => {
             console.log(err);
             res.status(400).json({ error: 'failed to create budget' })
