@@ -37,6 +37,10 @@ router.get('/budgets/:id/expanded', async (req, res) => {
         .leftJoin('recipients as r', 'r.budgetId', 'b.id')
         .leftJoin('items as i', 'i.recipientId', 'r.id')
         .where('b.id', req.params.id)
+        .orderBy([
+            { column: 'r_id', order: 'asc' },
+            { column: 'i_id', order: 'asc' }
+        ])
         .then(data => {
             return res.json({ data: parseExpandedBudget(data) });
         });
@@ -46,7 +50,7 @@ function parseExpandedBudget(data) {
     let budget = { id: data[0].b_id, name: data[0].b_name, amount: data[0].b_amount };
     
     budget.recipients = _.map(
-        _.uniqBy(_.filter(data, recipient => recipient.r_id), d => d.r_id), r => {
+        _.uniqBy(_.filter(data, d => d.r_id), d => d.r_id), r => {
             return { id: r.r_id, name: r.r_name, amount: r.r_amount }
         }
     );
