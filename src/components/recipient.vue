@@ -13,6 +13,8 @@
             <div class="items-container" v-if="recipient.items">
                 <item v-for="item in recipient.items"
                     v-bind:key="item.name"
+                    v-bind:budgetId="budgetId"
+                    v-bind:recipientId="recipient.id"
                     v-bind:item="item" />
                 <div v-if="recipient.items.length == 0">
                     <em>Nothing here yet!</em>
