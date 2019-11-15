@@ -3,15 +3,15 @@
         <form class="add-entry" v-if="isAdding" v-on:submit.prevent="addBudget">
             <div class="add-entry-field">
                 <label for="name">Budget Name:</label>
-                <input type="text" v-model="name" id="name" placeholder="My Event" />
+                <input class="form-input" type="text" v-model="name" id="name" placeholder="My Event" />
             </div>
             <div class="add-entry-field">
-                <label for="amount">Budget Name:</label>
-                <input type="number" step="1" v-model="amount" id="amount" />
+                <label for="amount">Budget Amount:</label>
+                <input class="form-input" type="number" step="1" v-model="amount" id="amount" />
             </div>
             <div class="add-entry-field">
-                <button type="submit">Create Budget &raquo;</button>
-                <button v-on:click="toggleForm" type="reset">Cancel</button>
+                <button type="reset" v-on:click="toggleForm">Cancel</button>
+                <button type="submit">Create Budget &raquo;</button>                
             </div>
         </form>
         <a v-if="!isAdding" v-on:click="toggleForm">Add New Budget +</a>
@@ -53,8 +53,5 @@ export default {
         padding:30px 15px;
         border:1px solid #a2a2a2;
         background-color: #fafafa;
-    }
-    a:hover {
-        cursor: pointer;
-    }
+    }    
 </style>

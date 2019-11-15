@@ -2,18 +2,21 @@
     <div id="app">
         <header-bar />
         <router-view></router-view>
+        <footer-bar />
     </div>
 </template>
 
 <script>
 import headerBar from './components/headerBar'
 import recipient from './components/recipient'
+import footerBar from './components/footerBar'
 
 export default {
     name: 'app',
     components: {
         headerBar,
-        recipient
+        recipient,
+        footerBar
     }
 }
 </script>
@@ -34,17 +37,24 @@ a {
 }
 a:hover {
     border-bottom: 2px solid #973735;
+    cursor: pointer;
 }
 button {
     padding:5px 15px;
     color:#fafafa;
-    border:2px solid #973735;
+    border:none;
     border-radius: 0.25rem;
     background-color: #bd4542;
 }
 button:hover {
     background-color: #973735;
     cursor: pointer;
+}
+button[type=reset] {
+    background: #838383;
+}
+button[type=reset]:hover {
+    background: #767676;
 }
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -55,18 +65,20 @@ button:hover {
     color: #2c3e50;
 }
 .add-entry {
-    display:flex;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    /*border:1px solid #000;*/
 }
 .add-entry-field {
+    margin:5px 0;
     padding:5px;
-    /*border:1px solid #000;*/
 }
 .add-entry-field label {
     display: block;
+}
+.add-entry-field button {
+    margin: 1px;
 }
 input.edit-field {    
     color: #2c3e50;
