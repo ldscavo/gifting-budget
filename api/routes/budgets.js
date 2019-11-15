@@ -44,7 +44,8 @@ router.get('/budgets/:id/expanded', async (req, res) => {
 function parseExpandedBudget(data) {
     let budget = { id: data[0].b_id, name: data[0].b_name, amount: data[0].b_amount };
     
-    budget.recipients = _.map(_.filter(data, recipient => recipient.r_id), r => {
+    budget.recipients =
+    _.map(_.uniqBy(_.filter(data, recipient => recipient.r_id), d => d.r_id), r => {
         return { id: r.r_id, name: r.r_name, amount: r.r_amount }
     });
 
