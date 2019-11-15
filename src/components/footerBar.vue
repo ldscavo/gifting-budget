@@ -4,7 +4,7 @@
             &copy; 2019<span v-if="year > 2019">-{{ year }}</span> by Logan Scavo.
         </span>        
         <span>
-            Source can be found on <a href="#">GitHub</a>
+            Source can be found on <a href="https://github.com/ldscavo/gifting-budget" target="_blank">GitHub</a>
         </span>
     </div>
 </template>
