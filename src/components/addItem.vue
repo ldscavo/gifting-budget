@@ -3,17 +3,18 @@
         <form class="add-entry" v-on:submit.prevent="addItem" v-if="isAdding">
             <div class="add-entry-field">
                 <label for="item-name">Name:</label>
-                <input type="text" v-model="name" id="item-name" placeholder="Item Name" />
+                <input class="form-input" type="text" v-model="name" id="item-name" placeholder="Item Name" />
             </div>
             <div class="add-entry-field">
                 <label for="item-price">Price:</label>
-                $<input type="number" v-model="price" id="item-price" step="0.01" />
+                $<input class="form-input" type="number" v-model="price" id="item-price" step="0.01" />
             </div>   
             <div class="add-entry-field">
-                <button type="submit">Add &raquo;</button>
+                <button type="reset" v-on:click="toggleForm">Cancel</button>
+                <button type="submit">Add Item &raquo;</button>
             </div>
         </form>    
-        <button v-if="!isAdding" v-on:click="openForm()">+ Add Item</button>
+        <button v-if="!isAdding" v-on:click="toggleForm">+ Add Item</button>
     </div>
 </template>
 
@@ -50,8 +51,8 @@ export default {
             this.name = "";
             this.price = 0.00;
         },
-        openForm: function() {
-            this.isAdding = true
+        toggleForm: function() {
+            this.isAdding = !this.isAdding;
         }
     }
 }

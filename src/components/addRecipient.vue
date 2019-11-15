@@ -1,18 +1,22 @@
 <template>
-    <form class="add-entry add-recipient" v-on:submit.prevent="addRecipient">
-        <h4>Add a Recipient</h4>
-        <div class="add-entry-field">
-            <label for="recipient-name">Name:</label>
-            <input type="text" v-model="name" id="recipient-name" placeholder="recipient Name" />
-        </div>
-        <div class="add-entry-field">
-            <label for="recipient-price">Amount:</label>
-            $<input type="number" v-model="amount" id="recipient-amount" step="0.01" />
-        </div>   
-        <div class="add-entry-field">
-            <button type="submit">Add &raquo;</button>
-        </div>
-    </form>
+    <div class="container">
+        <form class="add-entry add-recipient" v-if="isAdding" v-on:submit.prevent="addRecipient">
+            <h4>Add a Recipient</h4>
+            <div class="add-entry-field">
+                <label for="recipient-name">Name:</label>
+                <input class="form-input" type="text" v-model="name" id="recipient-name" placeholder="Recipient Name" />
+            </div>
+            <div class="add-entry-field">
+                <label for="recipient-price">Amount:</label>
+                $<input class="form-input" type="number" v-model="amount" id="recipient-amount" step="0.01" />
+            </div>   
+            <div class="add-entry-field">
+                <button type="reset" v-on:click="toggleForm">Cancel</button>
+                <button type="submit">Add Recipient &raquo;</button>
+            </div>
+        </form>
+        <a v-if="!isAdding" v-on:click="toggleForm">Add New Recipient +</a>
+    </div>
 </template>
 
 <script>
@@ -27,7 +31,8 @@ export default {
     data: function() {
         return {
             name: "",
-            amount: 0.00
+            amount: 0.00,
+            isAdding: false
         }
     },
     methods: {
@@ -45,12 +50,18 @@ export default {
         clear() {
             this.name = "";
             this.amount = 0.00;
+        },
+        toggleForm: function() {
+            this.isAdding = !this.isAdding;
         }
     }
 }
 </script>
 
 <style>
+    .container {
+        margin:15px auto;
+    }
     .add-recipient {
         max-width: 500px;
         padding: 15px;
