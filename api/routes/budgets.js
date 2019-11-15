@@ -30,7 +30,8 @@ router.get('/budgets/:id/expanded', async (req, res) => {
             'r.amount as r_amount',
             'i.id as i_id',
             'i.name as i_name',
-            'i.price as i_price'
+            'i.price as i_price',
+            'i.purchased as i_purchased'
         )
         .from('budgets as b')
         .leftJoin('recipients as r', 'r.budgetId', 'b.id')
@@ -52,7 +53,7 @@ function parseExpandedBudget(data) {
 
     budget.recipients.forEach(recipient => {
         recipient.items = _.map(_.filter(data, item => item.i_id && item.r_id == recipient.id), i => {
-            return { id: i.i_id, name: i.i_name, price: i.i_price }
+            return { id: i.i_id, name: i.i_name, price: i.i_price, purchased: i.i_purchased }
         });
     });
     
