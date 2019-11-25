@@ -22,11 +22,9 @@ export default {
 
 <style>
 #footer {
-    position: relative;
-    bottom: 0;
-    height: 25px;
+    margin: 150px auto 15px;
+    max-width: 550px;
+    border-top: 1px solid #2c3e50;
     padding:5px;
-    background: #c3c3c3;
-    margin-top: 150px;
 }
 </style>
