@@ -41,8 +41,4 @@ export default {
     background-color: #fafafa;
     padding:15px 5px;
 }
-.over-budget {
-    color:red;
-    font-weight: bold;
-}
 </style>

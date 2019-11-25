@@ -120,4 +120,8 @@ input.edit-field:focus {
 .form-section label {
     display: block;
 }
+.over-budget {
+    color: red;
+    font-weight: bold;
+}
 </style>

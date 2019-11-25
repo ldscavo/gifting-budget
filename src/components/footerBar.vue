@@ -1,7 +1,7 @@
 <template>
     <div id="footer">
         <span>
-            &copy; 2019<span v-if="year > 2019">-{{ year }}</span> by Logan Scavo.
+            &copy; {{ year }} by Logan Scavo.
         </span>        
         <span>
             Source can be found on <a href="https://github.com/ldscavo/gifting-budget" target="_blank">GitHub</a>
@@ -22,11 +22,9 @@ export default {
 
 <style>
 #footer {
-    position: relative;
-    bottom: 0;
-    height: 25px;
+    margin: 150px auto 15px;
+    max-width: 550px;
+    border-top: 1px solid #2c3e50;
     padding:5px;
-    background: #c3c3c3;
-    margin-top: 150px;
 }
 </style>
