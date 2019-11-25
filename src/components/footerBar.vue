@@ -1,7 +1,7 @@
 <template>
     <div id="footer">
         <span>
-            &copy; 2019<span v-if="year > 2019">-{{ year }}</span> by Logan Scavo.
+            &copy; {{ year }} by Logan Scavo.
         </span>        
         <span>
             Source can be found on <a href="https://github.com/ldscavo/gifting-budget" target="_blank">GitHub</a>
