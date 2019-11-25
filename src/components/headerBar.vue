@@ -1,14 +1,9 @@
 <template>
     <div id="main-header">
-        <div id="site-logo">
-            <router-link v-bind:to="{ name: 'budget-list' }">Gift Budget</router-link>
-        </div>
-        <div>
-            <!--
-            <span id="save"><button v-bind:click="saveBudget()">SAVE</button></span>
-            <span id="load"><button>LOAD</button></span>
-            -->
-        </div>        
+        <router-link v-bind:to="{ name: 'budget-list' }" id="site-logo">
+            <div id="logo-img"></div>
+            <div id="logo-text">Gift Budget</div>
+        </router-link>
     </div>
 </template>
 
@@ -37,22 +32,32 @@ export default {
         display:flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
     #main-header div span {        
         padding:5px;
     }
     #site-logo {
+        display: flex;
+        justify-content: flex-start;
         font-size: 2rem;
         margin-left:50px;
     }
-    #site-logo a {
+    #site-logo:hover {
+        border: none;
+    }
+    #logo-img {
+        background-image: url("../assets/logo.png");
+        background-size: 50px;
+        background-repeat: no-repeat;
+        height:50px;
+        width: 50px;
+    }
+    #logo-text {
+        margin: 10px 5px;
         font-weight: bold;
         text-decoration: none;
         color: #fff;
         text-shadow: 1px 1px #2c3e50;
-    }
-    #site-logo a:hover {
-        border: none;
-    }
+    }    
 </style>
