@@ -14,7 +14,7 @@
                 <button type="submit">Create Budget &raquo;</button>                
             </div>
         </form>
-        <a v-if="!isAdding" v-on:click="toggleForm">Add New Budget +</a>
+        <a v-if="!isAdding" v-on:click="toggleForm">+ Add New Budget</a>
     </div>
 </template>
 

@@ -14,7 +14,7 @@
                 <button type="submit">Add Item &raquo;</button>
             </div>
         </form>    
-        <button v-if="!isAdding" v-on:click="toggleForm">+ Add Item</button>
+        <a v-if="!isAdding" v-on:click="toggleForm">+ Add Item</a>
     </div>
 </template>
 

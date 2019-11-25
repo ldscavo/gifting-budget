@@ -15,7 +15,7 @@
                 <button type="submit">Add Recipient &raquo;</button>
             </div>
         </form>
-        <a v-if="!isAdding" v-on:click="toggleForm">Add New Recipient +</a>
+        <a v-if="!isAdding" v-on:click="toggleForm">+ Add New Recipient</a>
     </div>
 </template>
 
