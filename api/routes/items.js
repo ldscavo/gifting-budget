@@ -24,6 +24,7 @@ router.get('/budgets/:budgetId/recipients/:recipientId/items/:id', async (req, r
 router.post('/budgets/:budgetId/recipients/:recipientId/items', async (req, res) => {
   let item = req.body;
   item.recipientId = req.params.recipientId;
+  
   try {
     let newItem = 
       await knex('items')
@@ -32,7 +33,7 @@ router.post('/budgets/:budgetId/recipients/:recipientId/items', async (req, res)
 
     return res.status(201).json({ data: newItem[0] });
   }
-   catch(err) {
+  catch(err) {
     console.log(err);
     return res.status(400).json({ error: 'failed to create item' });
   }
