@@ -1,5 +1,5 @@
 module.exports = (req, res, next) => {
-    var knex = require('knex')(require('../../db/conn'));
+    var knex = (require('../../db'));
 
     knex('budgets').where({ id: req.params.id, userId: req.userId }).first()
         .then(budget => {

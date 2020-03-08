@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var knex = require('knex')(require('../db/conn'));
+var knex = require('../db');
 
 router.get('/budgets/:budgetId/recipients/:recipientId/items', (req, res) => {
     knex('items').where({ recipientId: req.params.recipientId })

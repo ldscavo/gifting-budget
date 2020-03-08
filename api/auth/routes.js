@@ -1,5 +1,5 @@
 var express = require('express');
-var knex = require('knex')(require('../db/conn'));
+var knex = require('../db');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var rounds = parseInt(process.env.SALT_ROUNDS);

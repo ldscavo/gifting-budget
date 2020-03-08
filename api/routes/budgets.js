@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var knex = require('knex')(require('../db/conn'));
+var knex = require('../db');
 var _ = require('lodash');
 
 router.get('/budgets', (req, res) => {
