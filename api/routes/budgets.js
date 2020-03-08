@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var knex = require('../db');
-var _ = require('lodash');
+let express = require('express');
+let router = express.Router();
+let knex = require('../db');
+let _ = require('lodash');
 
 router.get('/budgets', async (req, res) => {
   let budgets = await knex('budgets').where({ userId: req.userId });
@@ -10,7 +10,8 @@ router.get('/budgets', async (req, res) => {
 });
 
 router.get('/budgets/:id', async (req, res) => {
-  let budget = await knex('budgets').where({ id: req.params.id, userId: req.userId }).first();
+  let budget =
+    await knex('budgets').where({ id: req.params.id, userId: req.userId }).first();
 
   return budget
     ? res.json({ data: budget })
@@ -67,7 +68,11 @@ router.post('/budgets', async (req, res) => {
   budget.userId = req.userId;
 
   try {
-    let insertedBudget = await knex('budgets').insert(budget).returning('*');
+    let insertedBudget =
+      await knex('budgets')
+        .insert(budget)
+        .returning('*');
+
     insertedBudget[0].recipients = [];
 
     return res.status(201).json({ data: insertedBudget[0] });
@@ -81,6 +86,7 @@ router.post('/budgets', async (req, res) => {
 
 router.patch('/budgets/:id', async (req, res) => {
   let newBudgetData = req.body;
+
   let updatedBudget =
     await knex('budgets').where({ id: req.params.id, userId: req.userId })
       .update(newBudgetData)
