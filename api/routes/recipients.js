@@ -1,51 +1,62 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
-var knex = require('../db');
+let knex = require('../db');
 
-router.get('/budgets/:budgetId/recipients', (req, res) => {
-  knex('recipients').where({ budgetId: req.params.budgetId })
-    .then(budgets => res.json({ data: budgets }));
+router.get('/budgets/:budgetId/recipients', async (req, res) => {
+  let recipients =
+    await knex('recipients').where({ budgetId: req.params.budgetId });
+
+  return res.json({ data: recipients });
 });
 
-router.get('/budgets/:budgetId/recipients/:id', (req, res) => {
-  knex('recipients').where({ id: req.params.id })
-    .first()
-    .then(recipient => {
-      if (!recipient) {
-        return res.status(404).json({ error: 'recipient not found' })
-      }
-      return res.json({ data: recipient })
-    });
+router.get('/budgets/:budgetId/recipients/:id', async (req, res) => {
+  let recipient =
+    await knex('recipients')
+      .where({ id: req.params.id })
+      .first();
+    
+  return recipient
+    ? res.json({ data: recipient })
+    : res.status(404).json({ error: 'recipient not found' });
 });
 
-router.post('/budgets/:budgetId/recipients', (req, res) => {
-  var recipient = req.body;
+router.post('/budgets/:budgetId/recipients', async (req, res) => {
+  let recipient = req.body;
   recipient.budgetId = req.params.budgetId;
 
-  knex('recipients').insert(recipient).returning('*')
-    .then(insertedRecipient => {
-      insertedRecipient[0].items = [];
-      res.status(201).json({ data: insertedRecipient[0] })
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(400).json({ error: 'failed to create recipient' })
-    });
+  try {
+    let newRecipient =
+      await knex('recipients')
+        .insert(recipient)
+        .returning('*');
+
+    newRecipient[0].items = [];
+    return res.status(201).json({ data: newRecipient[0] });
+  }
+  catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: 'failed to create recipient' })
+  }
 });
 
-router.patch('/budgets/:budgetId/recipients/:id', (req, res) => {
-  var newRecipientData = req.body;
-  knex('recipients').where({ id: req.params.id })
-    .update(newRecipientData)
-    .returning('*')
-    .then(data => res.json({ data: data[0] }));
+router.patch('/budgets/:budgetId/recipients/:id', async (req, res) => {
+  let newRecipientData = req.body;
+
+  let updatedRecipient =
+    await knex('recipients')
+      .where({ id: req.params.id })
+      .update(newRecipientData)
+      .returning('*');
+      
+  return res.json({ data: updatedRecipient[0] });
 });
 
-router.delete('/budgets/:budgetId/recipients/:id', (req, res) => {
-  knex('recipients').where({ id: req.params.id })
-    .del()
-    .then(() => res.sendStatus(204));
+router.delete('/budgets/:budgetId/recipients/:id', async (req, res) => {
+  await knex('recipients')
+    .where({ id: req.params.id })
+    .del();
+  return res.sendStatus(204);
 });
 
 module.exports = router;
