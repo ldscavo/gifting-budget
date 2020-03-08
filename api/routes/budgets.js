@@ -4,14 +4,18 @@ let knex = require('../db');
 let _ = require('lodash');
 
 router.get('/budgets', async (req, res) => {
-  let budgets = await knex('budgets').where({ userId: req.userId });
+  let budgets =
+    await knex('budgets')
+      .where({ userId: req.userId });
 
   return res.json({ data: budgets });
 });
 
 router.get('/budgets/:id', async (req, res) => {
   let budget =
-    await knex('budgets').where({ id: req.params.id, userId: req.userId }).first();
+    await knex('budgets')
+      .where({ id: req.params.id, userId: req.userId })
+      .first();
 
   return budget
     ? res.json({ data: budget })
@@ -88,7 +92,8 @@ router.patch('/budgets/:id', async (req, res) => {
   let newBudgetData = req.body;
 
   let updatedBudget =
-    await knex('budgets').where({ id: req.params.id, userId: req.userId })
+    await knex('budgets')
+      .where({ id: req.params.id, userId: req.userId })
       .update(newBudgetData)
       .returning('*');
 
