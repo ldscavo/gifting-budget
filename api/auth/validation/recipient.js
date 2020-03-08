@@ -1,11 +1,12 @@
-module.exports = (req, res, next) => {
-  var knex = (require('../../db'));
+var knex = require('../../db');
 
-  knex('recipients').where({ id: req.params.id, budgetId: req.params.budgetId }).first()
-    .then(recipient => {
-      if (!recipient) {
-        return res.status(404).json({ error: 'recipient not found' });
-      }
-      return next();
-    });
+module.exports = async (req, res, next) => {
+  let recipient =
+    await knex('recipients')
+      .where({ id: req.params.id, budgetId: req.params.budgetId })
+      .first();
+      
+  return recipient
+    ? next()
+    : res.status(404).json({ error: 'recipient not found' });
 };
