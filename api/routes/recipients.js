@@ -5,7 +5,8 @@ let knex = require('../db');
 
 router.get('/budgets/:budgetId/recipients', async (req, res) => {
   let recipients =
-    await knex('recipients').where({ budgetId: req.params.budgetId });
+    await knex('recipients')
+      .where({ budgetId: req.params.budgetId });
 
   return res.json({ data: recipients });
 });
