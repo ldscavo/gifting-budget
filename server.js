@@ -1,8 +1,10 @@
 var express = require('express');
+var cors = require('cors')
 var serveStatic = require('serve-static');
 
 app = express();
 app.use(express.json())
+app.use(cors());
 
 // Add the registration and login routes
 app.use('/api', require('./api/auth/routes'));

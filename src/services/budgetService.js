@@ -1,9 +1,7 @@
-import axios from 'axios';
-
-axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+import http from '../infrastructure/http';
 
 export default {
-    getAllBudgets: () => axios.get('/api/budgets'),
-    getBudget: (id) => axios.get(`/api/budgets/${id}/expanded`),
-    createBudget: (name, amount) => axios.post('/api/budgets', {name, amount})
+  getAllBudgets: () => http.get('/api/budgets'),
+  getBudget: (id) => http.get(`/api/budgets/${id}/expanded`),
+  createBudget: (name, amount) => http.post('/api/budgets', {name, amount})
 }

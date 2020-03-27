@@ -1,6 +1,6 @@
-import axios from 'axios';
+import http from '../infrastructure/http';
 
 export default {
-    register: (email, password, passwordconfirm) => axios.post('/api/register', {email, password, passwordconfirm}),
-    login: (email, password) => axios.post('/api/login', {email, password})  
+    register: (email, password, passwordconfirm) => http.post('/api/register', {email, password, passwordconfirm}),
+    login: (email, password) => http.post('/api/login', {email, password})  
 }
