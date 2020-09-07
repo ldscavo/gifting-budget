@@ -1,6 +1,6 @@
 <template>
     <div id="main-header">
-        <router-link v-bind:to="{ name: 'budget-list' }" id="site-logo">
+        <router-link v-bind:to="{ path: '/' }" id="site-logo">
             <div id="logo-img"></div>
             <div id="logo-text">Gift Budget</div>
         </router-link>
