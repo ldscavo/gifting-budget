@@ -36,7 +36,7 @@ export default {
     }
   },
   methods: {
-    addRecipient(event) {
+    addRecipient() {
       let self = this;
 
       if (self.name != "" && self.amount > 0) {
@@ -47,7 +47,7 @@ export default {
           });
       } 
     },
-    
+
     clear() {
       this.name = "";
       this.amount = 0.00;

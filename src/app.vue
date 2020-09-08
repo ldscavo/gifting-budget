@@ -8,14 +8,12 @@
 
 <script>
 import headerBar from './components/headerBar'
-import recipient from './components/recipient'
 import footerBar from './components/footerBar'
 
 export default {
     name: 'app',
     components: {
         headerBar,
-        recipient,
         footerBar
     }
 }

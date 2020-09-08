@@ -25,7 +25,7 @@ export default {
     update: function() {
       let self = this;
       itemService.updateItem(self.budgetId, self.recipientId, self.item.id, self.item.name, self.item.price, self.purchased)
-        .then(_ => self.item.purchased = self.purchased)
+        .then(() => self.item.purchased = self.purchased)
         .catch(() => self.purchased = !self.purchased);
     }
   }

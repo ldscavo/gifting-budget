@@ -36,7 +36,7 @@ export default {
     }
   },
   methods: {
-    addItem(event) {
+    addItem() {
       let self = this;
 
       if (self.name != "" && self.price > 0) {

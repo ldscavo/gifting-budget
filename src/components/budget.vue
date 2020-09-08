@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
 import budgetDetails from './budgetDetails'
 import recipient from './recipient'
 import addRecipient from './addRecipient'
