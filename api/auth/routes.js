@@ -6,48 +6,59 @@ var rounds = parseInt(process.env.SALT_ROUNDS);
 
 var router = express.Router();
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
   if (req.body.password !== req.body.passwordconfirm) {
     return res.status(400).send({ error: "Passwords do not match" });
   }
-  bcrypt.hash(req.body.password, rounds, (err, hash) => {
-    if (err) {
-      return res.status(400).send({ error: "Could not save your user data" });
-    }
-    knex('users').insert({
-      username: req.body.username,
+  
+  let hash = await bcrypt.hash(req.body.password, rounds);
+  
+  try {
+    let data = await knex('users').insert({
+      username: req.body.email,
       email: req.body.email,
       password: hash
-    }, ['id'])
-      .then(data => {
-        jwt.sign({ userId: data[0].id }, process.env.PRIVATE_KEY, (err, token) => {
-          return res.json({ token: token });
-        });
-      })
-      .catch(err => res.status(400).json({ error: "Email already exists!" }));
-  });
+    }, ['id']);
+
+    return apiToken(res, data[0].id);
+  }
+  catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: "Email already exists!" })
+  }  
 });
 
-router.post('/login', (req, res) => {
-  knex('users').where({ email: req.body.email })
-    .then(users => {
-      if (users.length == 0) {
-        return res.status(400).send({ error: "No user exists with that email" });
-      }
-      bcrypt.compare(req.body.password, users[0].password, (err, matches) => {
-        if (!matches) {
-          return res.status(400).send({ error: "Incorrect password" });
-        }
+router.post('/login', async (req, res) => {
+  let users = await knex('users').where({ email: req.body.email });
+    
+  if (users.length == 0) {
+    return res.status(400).send({ error: "No user exists with that email" });
+  }
 
-        jwt.sign({ userId: users[0].id }, process.env.PRIVATE_KEY, (err, token) => {
-          res.json({ token: token });
-        });
-      });
-    });
+  let match = await bcrypt.compare(req.body.password, users[0].password);
+  
+  if (!match) {
+    return res.status(400).send({ error: "Incorrect password" });
+  }
+
+  return apiToken(res, users[0].id);  
 });
 
-router.post('/logout', (req, res) => {
+router.post('/logout', async (req, res) => {
+  await knex('users')
+    .where({ id: req.userId })
+    .update({ api_key: null });
+
   res.send('logout');
 });
+
+apiToken = async (res, userId) =>
+  jwt.sign({ userId: userId }, process.env.PRIVATE_KEY, async (err, token) => {
+    await knex('users')
+      .where({id: userId})
+      .update({api_key: token});
+
+    return res.json({ token: token });
+  });
 
 module.exports = router;
