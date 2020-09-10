@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "db-init": "node api/db/db-init.js",
-    "start": "node server.js"
+    "serve": "cd client && vue-cli-service serve",
+    "build": "cd client && vue-cli-service build",
+    "lint": "cd client && vue-cli-service lint",
+    "start": "node ./server"
   },
   "dependencies": {
     "axios": "^0.19.2",
