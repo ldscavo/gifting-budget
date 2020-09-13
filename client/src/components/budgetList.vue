@@ -19,7 +19,7 @@ export default {
   name: 'budgetList',
   data: function() {
     return {
-        budgets: []
+      budgets: []
     }
   },
   components: {
@@ -28,12 +28,13 @@ export default {
   },
   mounted: function() {
     var self = this;
-
+    
     budgetService.getAllBudgets()            
       .then(response => self.budgets = response.data.data);
   }
 }
 </script>
+
 <style scoped>
 #budget-list-container {
   margin: 0 auto;
