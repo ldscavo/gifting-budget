@@ -22,10 +22,8 @@ module.exports = async (req, res, next) => {
         api_key: token[1]
       });
     
-    if (savedTokens.length == 0) {
-      return res.sendStatus(401);
-    }
-
-    return next();
+    return savedTokens.length == 0
+      ? res.sendStatus(401)
+      : next();    
   });
 }

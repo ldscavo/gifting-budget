@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
       password: hash
     }, ['id']);
 
-    return apiToken(res, data[0].id);
+    return await apiToken(res, data[0].id);
   }
   catch (err) {
     console.log(err);
@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
     return res.status(400).send({ error: "Incorrect password" });
   }
 
-  return apiToken(res, users[0].id);  
+  return await apiToken(res, users[0].id);  
 });
 
 router.post('/logout', async (req, res) => {
