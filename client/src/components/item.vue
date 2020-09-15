@@ -22,11 +22,21 @@ export default {
     }
   },
   methods: {
-    update: function() {
-      let self = this;
-      itemService.updateItem(self.budgetId, self.recipientId, self.item.id, self.item.name, self.item.price, self.purchased)
-        .then(() => self.item.purchased = self.purchased)
-        .catch(() => self.purchased = !self.purchased);
+    update: async function() {
+      try {
+        await itemService.updateItem(
+          this.budgetId,
+          this.recipientId,
+          this.item.id,
+          this.item.name,
+          this.item.price,
+          this.purchased);
+
+        this.item.purchased = this.purchased;
+      }
+      catch (error) {
+        this.purchased = !this.purchased
+      }
     }
   }
 }

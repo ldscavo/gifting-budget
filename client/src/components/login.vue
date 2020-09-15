@@ -32,15 +32,16 @@ export default {
     }
   },
   methods: {
-    login: function() {
-      var self = this;
-
-      auth.login(self.email, self.password)
-        .then(response => {
-          localStorage.setItem("token", response.data.token);
-          self.$router.push({ path: '/budgets' })
-        })
-        .catch(error => alert(error.response.data.error));
+    login: async function() {
+      try {
+        let response = await auth.login(this.email, this.password);
+      
+        localStorage.setItem("token", response.data.token);
+        this.$router.push({ path: '/budgets' });
+      }
+      catch (error) {
+        alert(error.response.data.error)
+      }
     }
 }
 }

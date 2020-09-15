@@ -35,15 +35,16 @@ export default {
     }
   },
   methods: {
-    register: function() {
-      var self = this;
-
-      auth.register(self.email, self.password, self.passwordconfirm)
-        .then(response => {
-          localStorage.setItem("token", response.data.token);
-          self.$router.push({ path: '/budgets' })
-        })
-        .catch(error => alert(error.response.data.error));
+    register: async function() {
+      try {
+        let response = await auth.register(this.email, this.password, this.passwordconfirm);
+        
+        localStorage.setItem("token", response.data.token);
+        this.$router.push({ path: '/budgets' });
+      }
+      catch (error) {
+        alert(error.response.data.error);
+      }
     }
   }
 }
