@@ -1,11 +1,15 @@
 <template>
   <div id="budget-list-container">
     <h1>My Budgets</h1>
+    <clip-loader
+      v-if="loading"
+      size="80"
+      color="#973735" />
     <div id="budget-list">            
       <budget-card v-for="budget in budgets"
           v-bind:key="budget.id"
           v-bind:budget="budget" />
-    </div>
+    </div>    
     <add-budget />
   </div>
 </template>
@@ -19,6 +23,7 @@ export default {
   name: 'budgetList',
   data: function() {
     return {
+      loading: true,
       budgets: []
     }
   },
@@ -26,11 +31,11 @@ export default {
     budgetCard,
     addBudget
   },
-  mounted: function() {
-    var self = this;
+  mounted: async function() {
+    let response = await budgetService.getAllBudgets();
     
-    budgetService.getAllBudgets()            
-      .then(response => self.budgets = response.data.data);
+    this.budgets = response.data.data;
+    this.loading = false;    
   }
 }
 </script>

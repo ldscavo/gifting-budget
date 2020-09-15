@@ -1,5 +1,10 @@
 <template>
 <div>
+  <div id="loading" v-if="loading">
+    <clip-loader
+      size="80"
+      color="#973735" />
+  </div>
   <div class="budget" v-if="budget !== null">        
     <budget-details v-bind:budget="budget" />
     <recipient
@@ -11,8 +16,7 @@
       v-bind:recipients="budget.recipients"
       v-bind:budgetId="budget.id" />
   </div>
-  <img src="../assets/loading.gif" v-if="budget === null" />
-  </div>
+</div>
 </template>
 
 <script>
@@ -32,15 +36,16 @@ export default {
     id: Number
   },
   data: function () { 
-    return { budget: null }
+    return {
+      loading: true,
+      budget: null
+    }
   },
-  mounted: function() {
-    var self = this;
-
-    budgetService.getBudget(self.$route.params.id)
-        .then(response => {
-            self.budget = response.data.data;
-        });
+  mounted: async function() {
+    let response = await budgetService.getBudget(this.$route.params.id);
+    
+    this.budget = response.data.data;
+    this.loading = false;
   }
 }
 </script>
@@ -54,7 +59,6 @@ ul {
   padding: 0;
 }
 li {
-  /*display: inline-block;*/
   margin: 0 10px;
 }
 a {
@@ -62,8 +66,9 @@ a {
 }
 .budget {
   max-width: 960px;
-  margin:0 auto;
-  /*padding-top: 25px;*/
-  /*background-color: #fafafa;*/
+  margin: 0 auto;
+}
+#loading {
+  margin-top: 35px;
 }
 </style>
