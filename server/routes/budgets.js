@@ -50,17 +50,17 @@ router.get('/budgets/:id/expanded', async (req, res) => {
 });
 
 let parseExpandedBudget = data => {
-  let budget = { id: data[0].b_id, name: data[0].b_name, amount: data[0].b_amount };
+  let budget = { id: data[0].b_id, name: data[0].b_name, amount: parseFloat(data[0].b_amount) };
 
   budget.recipients = _.map(
     _.uniqBy(_.filter(data, recipient => recipient.r_id), d => d.r_id), r => {
-      return { id: r.r_id, name: r.r_name, amount: r.r_amount }
+      return { id: r.r_id, name: r.r_name, amount: parseFloat(r.r_amount) }
     }
   );
 
   budget.recipients.forEach(recipient => {
     recipient.items = _.map(_.filter(data, item => item.i_id && item.r_id == recipient.id), i => {
-      return { id: i.i_id, name: i.i_name, price: i.i_price, purchased: i.i_purchased }
+      return { id: i.i_id, name: i.i_name, price: parseFloat(i.i_price), purchased: i.i_purchased }
     });
   });
 
