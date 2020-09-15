@@ -3,7 +3,6 @@ import axios from 'axios';
 export default {
   http: axios.create({
     baseURL: process.env.VUE_APP_API_URL,
-    timeout: 1000,
     headers: {
       'Access-Control-Allow-Headers': '*'
     }
