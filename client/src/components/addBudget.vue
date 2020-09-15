@@ -9,10 +9,13 @@
         <label for="amount">Budget Amount:</label>
         <input class="form-input" type="number" step="1" v-model="amount" id="amount" />
       </div>
-      <div class="add-entry-field">
+      <div class="add-entry-field" v-if="!loading">
         <button type="reset" v-on:click="toggleForm">Cancel</button>
         <button type="submit">Create Budget &raquo;</button>                
       </div>
+      <beat-loader
+        v-if="loading"
+        color="#973735" />
     </form>
     <a v-if="!isAdding" v-on:click="toggleForm">+ Add New Budget</a>
   </div>
@@ -27,20 +30,20 @@ export default {
     return {
       isAdding: false,
       name: "",
-      amount: 0
+      amount: 0,
+      loading: false
     }
   },
   methods: {
     toggleForm: function() {
       this.isAdding = !this.isAdding;
     },
-    addBudget: function() {
-      let self = this;
+    addBudget: async function() {
+      this.loading = true;
 
-      budgetService.createBudget(self.name, self.amount)
-        .then(response => {
-          self.$router.push({ path: `/budget/${response.data.data.id}`});
-        });
+      let response = await budgetService.createBudget(this.name, this.amount);
+      
+      this.$router.push({ path: `/budget/${response.data.data.id}`});
     }
   }
 }

@@ -10,10 +10,13 @@
         <label for="recipient-price">Amount:</label>
         $<input class="form-input" type="number" v-model="amount" id="recipient-amount" step="0.01" />
       </div>   
-      <div class="add-entry-field">
+      <div class="add-entry-field" v-if="!loading">
         <button type="reset" v-on:click="toggleForm">Cancel</button>
         <button type="submit">Add Recipient &raquo;</button>
       </div>
+      <beat-loader
+        v-if="loading"
+        color="#973735" />
     </form>
     <a v-if="!isAdding" v-on:click="toggleForm">+ Add New Recipient</a>
   </div>
@@ -32,25 +35,26 @@ export default {
     return {
       name: "",
       amount: 0.00,
-      isAdding: false
+      isAdding: false,
+      loading: false
     }
   },
   methods: {
-    addRecipient() {
-      let self = this;
+    addRecipient: async function() {
+      if (this.name != "" && this.amount > 0) {
+        this.loading = true;
 
-      if (self.name != "" && self.amount > 0) {
-        recipientService.createRecipient(self.budgetId, self.name, self.amount)
-          .then(response => {
-            self.recipients.push(response.data.data);
-            self.clear();
-          });
+        let response = await recipientService.createRecipient(this.budgetId, this.name, this.amount);
+
+        this.recipients.push(response.data.data);
+        this.clear();
       } 
     },
 
     clear() {
       this.name = "";
       this.amount = 0.00;
+      this.loading = false;
     },
 
     toggleForm: function() {
