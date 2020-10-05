@@ -27,14 +27,15 @@ export default {
 
 <style scoped>
 .recipient-summary {
-    width: 100%;
+  width: 100%;
+  margin: 15px;
 }
 .name {
-    font-size: 1.1rem;
-    font-weight: bold;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 .spent::before, .spent::after {
-    content: " \007C ";
+  content: " \007C ";
 }
 @media only screen and (max-width: 550px) {
   .recipient-summary {

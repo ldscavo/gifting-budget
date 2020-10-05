@@ -1,52 +1,45 @@
 <template>
   <div class="recipient">
-    <div class="showhide" v-on:click="showhide()">
-      <span v-if="!collaped">-</span>
-      <span v-if="collaped">+</span>
-    </div>
-    <div class="recipient-details" v-if="!collaped">
-      <h3>{{ recipient.name }}</h3>
-      <div>
-        <div>
-          <div>Budgeted: {{ recipient.amount | currency }}</div>
-          <div>Spent: {{ totalSpent() | currency }}</div>
-          <div>
-            Remaining:
-            <span v-bind:class="{ 'over-budget': remaining() < 0 }">
-              {{ remaining() | currency }}
-            </span>
-          </div>
-        </div>
-        <div class="items-container" v-if="recipient.items">
-          <item
-            v-for="item in recipient.items"
-            v-bind:key="item.name"
-            v-bind:budgetId="budgetId"
-            v-bind:recipientId="recipient.id"
-            v-bind:item="item" />
-          <div v-if="recipient.items.length == 0">
-            <em>Nothing here yet!</em>
-          </div>
-        </div>
-        <add-item
-          v-bind:items="recipient.items"
-          v-bind:budgetId="budgetId" 
-          v-bind:recipientId="recipient.id" />
+    <div class="recipient-toolbar">
+      <div class="toolbar-item" v-on:click="showhide()">
+        <span v-if="!collaped">-</span>
+        <span v-if="collaped">+</span>
       </div>
+      <div
+        v-if="!isEditing"
+        v-on:click="isEditing = true"
+        class="toolbar-item edit"><a>(Edit)</a></div>
     </div>
-    <recipient-minimized
-      v-if="collaped"
+    <div v-if="!isEditing">
+      <recipient-details
+        v-if="!collaped"
+        v-bind:recipient="recipient"
+        v-bind:budgetId="budgetId"
+        v-bind:total="totalSpent()"
+        v-bind:remaining="remaining()" />
+      <recipient-minimized
+        v-if="collaped"
+        v-bind:recipient="recipient"
+        v-bind:total="totalSpent()" />
+    </div>
+    <edit-recipient
+      v-if="isEditing"
       v-bind:recipient="recipient"
-      v-bind:total="totalSpent()" />
+      v-bind:onSubmit="saveRecipient"
+      v-bind:onCancel="cancel" />
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
 
+import recipientDetails from './recipientDetails'
 import recipientMinimized from './recipientMinimized'
 import item from './item'
 import addItem from './addItem'
+import editRecipient from './editRecipient'
+
+import recipientService from '../services/recipientService'
 
 export default {
   name: 'recipient',
@@ -55,13 +48,16 @@ export default {
     budgetId: Number
   },
   components: {
+    recipientDetails,
     recipientMinimized,
     item,
-    addItem
+    addItem,
+    editRecipient
   },
   data: function(){
     return {
-      collaped: true
+      collaped: true,
+      isEditing: false
     }
   },
   methods: {
@@ -73,6 +69,22 @@ export default {
     },
     showhide() {
       this.collaped = !this.collaped;
+    },
+    async saveRecipient(name, amount) {
+      try {
+        await recipientService.editRecipient(this.budgetId, this.recipient.id, name, amount);
+
+        this.recipient.name = name;
+        this.recipient.amount = amount;
+        this.isEditing = false;
+        this.collaped = false;
+      }
+      catch (err) {
+        console.log("Failed to save recipient details!");
+      }
+    },
+    cancel() {
+      this.isEditing = false;
     }
   }
 }
@@ -80,26 +92,24 @@ export default {
 
 <style scoped>
 .recipient {
-  display: flex;
-  justify-content: flex-start;
   border:1px solid #a2a2a2;
   background-color: #fafafa;
-  max-width:690px;
-  margin:15px auto;
-  padding:15px;
+  max-width: 690px;
+  margin: 15px auto;
 }
-.recipient-details {
+.recipient-toolbar {
   width: 100%;
-}
-.items-container {
-  margin:15px 5px;
-}
-.showhide {
-  border-radius:2px;
-  text-align: center;
-  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
   height:25px;
-  width:25px;
+  border-bottom: lawngreen;
+}
+.recipient-toolbar .toolbar-item {
+  text-align: center;
   cursor: pointer;
+  padding:2px 10px;
+}
+.edit {
+  font-size: 0.85rem;
 }
 </style>
