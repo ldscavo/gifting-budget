@@ -8,7 +8,7 @@
       <div
         v-if="!isEditing"
         v-on:click="isEditing = true"
-        class="toolbar-item edit"><a>(Edit)</a></div>
+        class="toolbar-item edit"><a>Edit</a></div>
     </div>
     <div v-if="!isEditing">
       <recipient-details
