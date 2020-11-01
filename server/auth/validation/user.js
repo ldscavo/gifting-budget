@@ -16,9 +16,9 @@ module.exports = async (req, res, next) => {
     
     req.userId = decoded.userId;
     
-    let savedTokens = await knex('users')
+    let savedTokens = await knex('apiKeys')
       .where({
-        id: req.userId,
+        userId: req.userId,
         api_key: token[1]
       });
     

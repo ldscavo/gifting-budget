@@ -54,9 +54,7 @@ router.post('/logout', async (req, res) => {
 
 apiToken = async (res, userId) =>
   jwt.sign({ userId: userId }, process.env.PRIVATE_KEY, async (err, token) => {
-    await knex('users')
-      .where({id: userId})
-      .update({api_key: token});
+    await knex('apiKeys').insert({userId, api_key: token});
 
     return res.json({ token: token });
   });
