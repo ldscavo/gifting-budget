@@ -1,6 +1,8 @@
 var express = require('express');
-var cors = require('cors')
-var serveStatic = require('serve-static');
+var cors = require('cors');
+var dotenv = require('dotenv');
+
+dotenv.config();
 
 app = express();
 app.use(express.json())
