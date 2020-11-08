@@ -2,13 +2,13 @@
   <div class="recipient">
     <div class="recipient-toolbar">
       <div class="toolbar-item" v-on:click="showhide()">
-        <span v-if="!collaped">-</span>
-        <span v-if="collaped">+</span>
+        <span v-if="!collaped"><fa-icon icon="chevron-down"/></span>
+        <span v-if="collaped"><fa-icon icon="chevron-right"/></span>
       </div>
       <div
         v-if="!isEditing"
         v-on:click="isEditing = true"
-        class="toolbar-item edit"><a>Edit</a></div>
+        class="toolbar-item edit"><fa-icon icon="edit"/></div>
     </div>
     <div v-if="!isEditing">
       <recipient-details
@@ -109,7 +109,7 @@ export default {
   cursor: pointer;
   padding:2px 10px;
 }
-.edit {
-  font-size: 0.85rem;
+a:hover {
+  border-bottom: none;
 }
 </style>

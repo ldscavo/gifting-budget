@@ -6,12 +6,19 @@ import "./infrastructure/filters"
 
 import { VueSpinners } from '@saeris/vue-spinners'
 
-Vue.config.productionTip = false
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faEdit, faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-Vue.use(Router)
-Vue.use(VueSpinners)
+library.add(faEdit, faChevronRight, faChevronDown);
+
+Vue.config.productionTip = false;
+
+Vue.use(Router);
+Vue.use(VueSpinners);
+Vue.component('fa-icon', FontAwesomeIcon);
 
 new Vue({
   render: h => h(app),
   router
-}).$mount('#app')
+}).$mount('#app');
