@@ -27,8 +27,8 @@ export default {
 
 <style scoped>
 .recipient-summary {
-  width: 100%;
-  margin: 15px;
+  width: 95%;
+  margin: 15px auto;
 }
 .name {
   font-size: 1.1rem;
@@ -39,7 +39,6 @@ export default {
 }
 @media only screen and (max-width: 550px) {
   .recipient-summary {
-    width: 95%;
     display: flex;
     justify-content: space-around;
   }        
