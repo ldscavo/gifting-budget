@@ -51,7 +51,6 @@ export default {
 }
 .item:hover {
   background-color: #e2e2e2;
-  /*color: #fff;*/
 }
 .unpurchased {
   font-style: italic;
