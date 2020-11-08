@@ -39,6 +39,7 @@ export default {
 }
 @media only screen and (max-width: 550px) {
   .recipient-summary {
+    width: 95%;
     display: flex;
     justify-content: space-around;
   }        
