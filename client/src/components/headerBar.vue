@@ -59,5 +59,10 @@ export default {
   text-decoration: none;
   color: #fff;
   text-shadow: 1px 1px #2c3e50;
-}    
+}
+@media only screen and (max-width: 550px) {
+  #site-logo {
+    margin-left: 15px;
+  }
+}
 </style>
