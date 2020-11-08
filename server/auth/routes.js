@@ -2,6 +2,8 @@ var express = require('express');
 var knex = require('../db');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
+var util = require('../auth/util');
+
 var rounds = parseInt(process.env.SALT_ROUNDS);
 
 var router = express.Router();
@@ -45,11 +47,21 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', async (req, res) => {
-  await knex('users')
-    .where({ id: req.userId })
-    .update({ api_key: null });
+  var jwt = require('jsonwebtoken');
 
-  res.send('logout');
+  let token = util.getToken(req);
+
+  let decoded = jwt.verify(token, process.env.PRIVATE_KEY);
+
+  if (!decoded) {
+    return res.sendStatus(401);
+  }
+
+  await knex('apiKeys')
+    .where({ userId: decoded.userId, api_key: token })
+    .del();
+
+  return res.json({text:"Successfully logged out"});
 });
 
 apiToken = async (res, userId) =>
