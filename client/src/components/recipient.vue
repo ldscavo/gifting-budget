@@ -107,7 +107,7 @@ export default {
 .recipient-toolbar .toolbar-item {
   text-align: center;
   cursor: pointer;
-  padding:2px 10px;
+  padding:5px;
 }
 a:hover {
   border-bottom: none;
