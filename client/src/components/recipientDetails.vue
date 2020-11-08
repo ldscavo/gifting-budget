@@ -56,6 +56,8 @@ export default {
   text-align: center;
 }
 .items-container {
-  margin:15px 5px;
+  margin:15px auto;
+  border: 1px solid #a2a2a2;
+  width: 85%;
 }
 </style>

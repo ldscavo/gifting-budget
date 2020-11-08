@@ -1,7 +1,8 @@
 <template>
-  <div class="item" v-bind:class="{ 'purchased': purchased }">
+  <div class="item" v-bind:class="{ 'unpurchased': !purchased }">
     <input type="checkbox" v-model="purchased" v-on:change="update" />
-    {{ item.name }} - {{ parseFloat(item.price) | currency }}
+    <span class="name">{{ item.name }}</span>
+    <span class="price">{{ parseFloat(item.price) | currency }}</span>
   </div>
 </template>
 
@@ -44,12 +45,19 @@ export default {
 
 <style scoped>
 .item {
-  width:80%;
-  margin: 5px auto;
-  border:1px solid #000;
-  padding:10px 15px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
 }
-.purchased {
-  background-color: aquamarine;
+.item:hover {
+  background-color: #e2e2e2;
+  /*color: #fff;*/
+}
+.unpurchased {
+  font-style: italic;
+  color: #959595;
+}
+input[type="checkbox"] {
+  border:5px solid black;
 }
 </style>
