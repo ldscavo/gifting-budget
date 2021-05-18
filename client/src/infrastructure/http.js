@@ -1,34 +1,24 @@
 import axios from 'axios';
 
-export default {
-  http: axios.create({
-    baseURL: process.env.VUE_APP_API_URL,
+let http = 
+  axios.create({
+    baseURL: process.env.VUE_APP_API_URL
+  });
+
+let headers = () =>
+  ({
     headers: {
-      'Access-Control-Allow-Headers': '*'
+      'Access-Control-Allow-Headers': '*',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
     }
-  }),
-  
-  headers() {
-    return {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
-    };
-  },
+  });
 
-  get(url) {
-    return this.http.get(url, this.headers());
-  },
+export default {
+  get: url => http.get(url, headers()),
 
-  post(url, data) {
-    return this.http.post(url, data, this.headers());
-  },
+  post: (url, data) => http.post(url, data, headers()),
 
-  patch(url, data) {
-    return this.http.patch(url, data, this.headers());
-  },
+  patch: (url, data) => http.patch(url, data, headers()),
 
-  delete(url) {
-    return this.http.delete(url, this.headers());
-  }
+  delete: url => http.delete(url, headers())
 };

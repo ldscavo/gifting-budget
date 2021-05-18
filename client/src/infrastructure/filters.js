@@ -1,3 +1,6 @@
 import Vue from 'vue'
 
-Vue.filter('currency', value => value.toLocaleString('en-US', { style: 'currency', currency: 'USD'}))
+let currency = value =>
+  value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+
+Vue.filter('currency', currency)
