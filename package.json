@@ -2,6 +2,9 @@
   "name": "gifting-budget",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
     "build": "cd client && vue-cli-service build",
     "lint": "cd client && vue-cli-service lint",
