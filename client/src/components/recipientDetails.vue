@@ -60,4 +60,9 @@ export default {
   border: 1px solid #a2a2a2;
   width: 85%;
 }
+@media only screen and (max-width: 550px) {
+  .items-container {
+    width: 98%;
+  }
+}
 </style>
