@@ -47,5 +47,6 @@ export default {
   border-top: none;
   background-color: #fafafa;
   padding:15px 5px;
+  margin-bottom: 10px;
 }
 </style>

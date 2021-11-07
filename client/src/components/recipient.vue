@@ -98,10 +98,10 @@ export default {
 
 <style scoped>
 .recipient {
-  border:1px solid #a2a2a2;
+  border: 1px solid #a2a2a2;
   background-color: #fafafa;
   max-width: 820px;
-  margin: 15px auto;
+  margin: -1px auto;
 }
 .recipient-toolbar {
   width: 100%;
