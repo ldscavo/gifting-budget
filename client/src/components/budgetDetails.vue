@@ -1,18 +1,24 @@
 <template>
   <div class="budget-details">
     <h1>{{ budget.name }}</h1>
-    <div class="amount">
-      Budgeted: {{ budget.amount | currency }}
-    </div>
-    <div class="allotted">
-      Allotted: {{ totalAllocated() | currency }}
-    </div>
-    <div class="spent">
-      Spent: {{ totalSpent() | currency }}
-    </div>
-    <div class="remaining" v-bind:class="{ 'over-budget': remainingBalance() < 0 }">
-      Remaining: {{ remainingBalance() | currency }}
-    </div>
+    <table>
+      <tr>
+        <th>Budgeted: </th>
+        <td>{{ budget.amount | currency }}</td>
+      </tr>
+      <tr>
+        <th>Allotted: </th>
+        <td>{{ totalAllocated() | currency }}</td>
+      </tr>
+      <tr>
+        <th>Spent: </th>
+        <td>{{ totalSpent() | currency }}</td>
+      </tr>
+      <tr>
+        <th>Remaining: </th>
+        <td>{{ remainingBalance() | currency }}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -53,4 +59,8 @@ export default {
 h1 {
   margin: 10px auto;
 }
+table { margin: 0 auto; }
+th { text-align: left; }
+td { text-align: right; }
+th, td { padding: 1px 10px; }
 </style>

@@ -2,16 +2,22 @@
   <div class="recipient-details">
     <h3>{{ recipient.name }}</h3>
     <div>
-      <div>
-        <div>Budgeted: {{ recipient.amount | currency }}</div>
-        <div>Spent: {{ total | currency }}</div>
-        <div>
-          Remaining:
-          <span v-bind:class="{ 'over-budget': remaining < 0 }">
+      <table>
+        <tr>
+          <th>Budgeted: </th>
+          <td>{{ recipient.amount | currency }}</td>
+        </tr>
+        <tr>
+          <th>Spent: </th>
+          <td>{{ total | currency }}</td>
+        </tr>
+        <tr>
+          <th>Remaining: </th>
+          <td v-bind:class="{ 'over-budget': remaining < 0 }">
             {{ remaining | currency }}
-          </span>
-        </div>
-      </div>
+          </td>
+        </tr>
+      </table>
       <div class="items-container" v-if="recipient.items">
         <item
           v-for="item in recipient.items"
@@ -65,4 +71,8 @@ export default {
     width: 98%;
   }
 }
+table { margin: 0 auto; }
+th { text-align: left; }
+td { text-align: right; }
+th, td { padding: 1px 10px; }
 </style>
