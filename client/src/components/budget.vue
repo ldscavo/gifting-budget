@@ -11,7 +11,8 @@
       v-for="recipient in budget.recipients"
       v-bind:key="recipient.name"
       v-bind:recipient="recipient"
-      v-bind:budgetId="budget.id" />
+      v-bind:budgetId="budget.id"
+      v-bind:deleteRecipient="deleteRecipient" />
     <add-recipient
       v-bind:recipients="budget.recipients"
       v-bind:budgetId="budget.id" />
@@ -20,10 +21,12 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import budgetDetails from './budgetDetails'
 import recipient from './recipient'
 import addRecipient from './addRecipient'
 import budgetService from '../services/budgetService'
+import recipientService from '../services/recipientService'
 
 export default {
   name: 'budget',
@@ -46,6 +49,16 @@ export default {
     
     this.budget = response.data.data;
     this.loading = false;
+  },
+  methods: {
+    async deleteRecipient(recipient) {
+      if (!confirm(`Are you sure you'd like to delete '${recipient.name}'? This cannot be undone.`))
+        return;
+
+      await recipientService.deleteRecipient(this.budget.id,recipient.id);
+      
+      this.budget.recipients = this.budget.recipients.filter(r => r.id != recipient.id);
+    }
   }
 }
 </script>

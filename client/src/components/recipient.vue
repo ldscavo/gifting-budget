@@ -5,10 +5,15 @@
         <span v-if="!collaped"><fa-icon icon="chevron-down"/></span>
         <span v-if="collaped"><fa-icon icon="chevron-right"/></span>
       </div>
-      <div
-        v-if="!isEditing"
-        v-on:click="isEditing = true"
-        class="toolbar-item edit"><fa-icon icon="edit"/></div>
+      <div class="toolbar-crud">
+        <div
+          v-if="!isEditing"
+          v-on:click="isEditing = true"
+          class="toolbar-item edit"><fa-icon icon="edit"/></div>
+        <div
+          v-on:click="deleteRecipient(recipient)"
+          class="toolbar-item delete"><fa-icon icon="trash"/></div>
+        </div>      
     </div>
     <div v-if="!isEditing">
       <recipient-details
@@ -45,7 +50,8 @@ export default {
   name: 'recipient',
   props: {
     recipient: Object,
-    budgetId: Number
+    budgetId: Number,
+    deleteRecipient: Function
   },
   components: {
     recipientDetails,
@@ -108,6 +114,9 @@ export default {
   text-align: center;
   cursor: pointer;
   padding:5px;
+}
+.recipient-toolbar .toolbar-crud {
+  display: flex;
 }
 a:hover {
   border-bottom: none;
