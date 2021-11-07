@@ -5,5 +5,8 @@ export default {
     http.post(`/api/budgets/${budgetId}/recipients`, { name, amount }),
   
   editRecipient: (budgetId, id, name, amount) => 
-    http.patch(`/api/budgets/${budgetId}/recipients/${id}`, { name, amount })
+    http.patch(`/api/budgets/${budgetId}/recipients/${id}`, { name, amount }),
+
+  deleteRecipient: (budgetId, id) =>
+    http.delete(`/api/budgets/${budgetId}/recipients/${id}`)
 }
