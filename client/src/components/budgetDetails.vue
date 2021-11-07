@@ -46,7 +46,11 @@ export default {
   border:1px solid #a2a2a2;
   border-top: none;
   background-color: #fafafa;
-  padding:15px 5px;
+  padding: 5px;
+  padding-bottom: 15px;
   margin-bottom: 10px;
+}
+h1 {
+  margin: 10px auto;
 }
 </style>

@@ -25,13 +25,13 @@ html {
   width:100%;
 }
 body {
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
 }
 a {
   color: #973735;
   text-decoration: none;
-  font-weight:bold;
+  font-weight: bold;
 }
 a:hover {
   border-bottom: 2px solid #973735;
