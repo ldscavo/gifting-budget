@@ -1,21 +1,16 @@
 let express = require('express');
 let router = express.Router();
 
-let knex = require('../db');
+let itemService = require('../services/itemService');
 
 router.get('/budgets/:budgetId/recipients/:recipientId/items', async (req, res) => {
-  let items =
-    await knex('items')
-      .where({ recipientId: req.params.recipientId });
+  let items = await itemService.getItemsByRecipient(req.params.recipientId);
 
   return res.json({ data: items });
 });
 
 router.get('/budgets/:budgetId/recipients/:recipientId/items/:id', async (req, res) => {
-  let item = 
-    await knex('items')
-      .where({ id: req.params.id })
-      .first();
+  let item = await itemService.getItemById(req.params.id);
   
   return item
     ? res.json({ data: item })
@@ -23,16 +18,10 @@ router.get('/budgets/:budgetId/recipients/:recipientId/items/:id', async (req, r
 });
 
 router.post('/budgets/:budgetId/recipients/:recipientId/items', async (req, res) => {
-  let item = req.body;
-  item.recipientId = req.params.recipientId;
-  
   try {
-    let newItem = 
-      await knex('items')
-        .insert(item)
-        .returning('*');
+    let newItem = await itemService.addItemToRecipient(req.params.recipientId, req.body);
 
-    return res.status(201).json({ data: newItem[0] });
+    return res.status(201).json({ data: newItem });
   }
   catch(err) {
     console.log(err);
@@ -41,21 +30,13 @@ router.post('/budgets/:budgetId/recipients/:recipientId/items', async (req, res)
 });
 
 router.patch('/budgets/:budgetId/recipients/:recipientId/items/:id', async (req, res) => {
-  let newItemData = req.body;
+  let updatedItem = await itemService.updateItem(req.params.id, req.body);
 
-  let updatedItem =
-    await knex('items')
-      .where({ id: req.params.id })
-      .update(newItemData)
-      .returning('*');
-
-  return res.json({ data: updatedItem[0] });
+  return res.json({ data: updatedItem });
 });
 
 router.delete('/budgets/:budgetId/recipients/:recipientId/items/:id', async (req, res) => {
-  await knex('items')
-    .where({ id: req.params.id })
-    .del();
+  await itemService.deleteItem(req.params.id);
     
   return res.sendStatus(204);
 });
