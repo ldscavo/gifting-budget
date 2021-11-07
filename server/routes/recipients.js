@@ -54,9 +54,14 @@ router.patch('/budgets/:budgetId/recipients/:id', async (req, res) => {
 });
 
 router.delete('/budgets/:budgetId/recipients/:id', async (req, res) => {
+  await knex('items')
+    .where({ recipientId: req.params.id })
+    .del();
+
   await knex('recipients')
     .where({ id: req.params.id })
     .del();
+
   return res.sendStatus(204);
 });
 
