@@ -102,6 +102,7 @@ export default {
   background-color: #fafafa;
   max-width: 820px;
   margin: -1px auto;
+  padding-bottom: 10px;
 }
 .recipient-toolbar {
   width: 100%;
