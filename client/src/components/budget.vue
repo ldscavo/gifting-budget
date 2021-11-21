@@ -80,14 +80,8 @@ a {
 .budget {
   max-width: 960px;
   margin: 0 auto;
-  border: 1px solid red;
 }
 #loading {
   margin-top: 35px;
-}
-@media only screen and (min-width: 960px) {
-  .budget {
-    background-color: red;
-  }
 }
 </style>
