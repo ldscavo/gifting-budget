@@ -51,7 +51,7 @@ export default {
       } 
     },
 
-    clear() {
+    clear: function() {
       this.name = "";
       this.amount = 0.00;
       this.loading = false;

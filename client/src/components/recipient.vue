@@ -73,10 +73,10 @@ export default {
     remaining: function() {
       return this.recipient.amount - this.totalSpent();
     },
-    showhide() {
+    showhide: function() {
       this.collaped = !this.collaped;
     },
-    async saveRecipient(name, amount) {
+    saveRecipient: async function(name, amount) {
       try {
         await recipientService.editRecipient(this.budgetId, this.recipient.id, name, amount);
 
@@ -89,7 +89,7 @@ export default {
         console.log("Failed to save recipient details!");
       }
     },
-    cancel() {
+    cancel: function() {
       this.isEditing = false;
     }
   }

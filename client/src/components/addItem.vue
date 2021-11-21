@@ -50,7 +50,7 @@ export default {
         this.clear();        
       } 
     },
-    clear() {
+    clear: function() {
       this.name = "";
       this.price = 0.00;
       this.loading = false;

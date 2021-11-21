@@ -51,7 +51,7 @@ export default {
     this.loading = false;
   },
   methods: {
-    async deleteRecipient(recipient) {
+    deleteRecipient: async function(recipient) {
       if (!confirm(`Are you sure you'd like to delete '${recipient.name}'? This cannot be undone.`))
         return;
 
@@ -80,8 +80,14 @@ a {
 .budget {
   max-width: 960px;
   margin: 0 auto;
+  border: 1px solid red;
 }
 #loading {
   margin-top: 35px;
+}
+@media only screen and (min-width: 960px) {
+  .budget {
+    background-color: red;
+  }
 }
 </style>
