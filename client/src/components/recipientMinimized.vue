@@ -1,5 +1,5 @@
 <template>
-  <div class="recipient-summary">
+  <div class="recipient-summary" v-on:click="showHide">
     <span class="name">{{ recipient.name }}</span>
     <span class="totals">
       <span class="spent">Spent: {{ total | currency }} out of {{ recipient.amount | currency }}</span>
@@ -15,7 +15,8 @@ export default {
   name: "recipientMinimized",
   props: {
     recipient: Object,
-    total: Number
+    total: Number,
+    showHide: Function
   },
   methods: {
     remaining: function() {

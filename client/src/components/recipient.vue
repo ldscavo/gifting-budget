@@ -25,7 +25,8 @@
       <recipient-minimized
         v-if="collaped"
         v-bind:recipient="recipient"
-        v-bind:total="totalSpent()" />
+        v-bind:total="totalSpent()"
+        v-bind:showHide="showhide" />
     </div>
     <edit-recipient
       v-if="isEditing"
