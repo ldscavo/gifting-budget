@@ -24,7 +24,8 @@
           v-bind:key="item.name"
           v-bind:budgetId="budgetId"
           v-bind:recipientId="recipient.id"
-          v-bind:item="item" />
+          v-bind:item="item"
+          v-bind:deleteItem="deleteItem" />
         <div v-if="recipient.items.length == 0">
           <em>Nothing here yet!</em>
         </div>
@@ -41,6 +42,8 @@
 import addItem from './addItem'
 import item from './item'
 
+import itemService from '../services/itemService'
+
 export default {
   name: 'recipientDetails',
   props: {
@@ -52,6 +55,16 @@ export default {
   components: {
     addItem,
     item
+  },
+  methods: {
+    deleteItem: async function(item) {
+      if (!confirm(`Are you sure you'd like to delete '${item.name}'? This cannot be undone.`))
+        return;
+
+      await itemService.deleteItem(this.budgetId, this.recipient.id, item.id);
+      
+      this.recipient.items = this.recipient.items.filter(i => i.id != item.id);
+    }
   }
 }
 </script>
