@@ -7,10 +7,17 @@ import "./infrastructure/filters"
 import { VueSpinners } from '@saeris/vue-spinners'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faEdit, faChevronRight, faChevronDown, faTrash, faEllipsisV } from '@fortawesome/free-solid-svg-icons'
+import {
+  faEdit,
+  faChevronRight,
+  faChevronDown,
+  faTrash,
+  faEllipsisV,
+  faBan,
+  faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faEdit, faChevronRight, faChevronDown, faTrash, faEllipsisV);
+library.add(faEdit, faChevronRight, faChevronDown, faTrash, faEllipsisV, faBan, faCheck);
 
 Vue.config.productionTip = false;
 

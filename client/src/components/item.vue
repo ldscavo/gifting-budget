@@ -1,16 +1,28 @@
 <template>
-  <div class="item" v-bind:class="{ 'unpurchased': !purchased }">
-    <input type="checkbox" v-model="purchased" v-on:change="update" />
+<div>
+  <div v-if="!isEditing" class="item" v-bind:class="{ 'unpurchased': !purchased }">
+    <input type="checkbox" v-model="purchased" v-on:change="togglePurchase" />
     <span class="name">{{ item.name }}</span>
     <div>
       <span class="price">{{ parseFloat(item.price) | currency }}</span>
-      <div id="edit-container">
-        <div
-          v-on:click="deleteItem(item)"
-          class="menu-item delete"><fa-icon icon="trash"/></div>
+      <div id="edit-container">        
+        <fa-icon icon="edit" v-on:click="toggleEdit" class="menu-item"/>
+        <fa-icon icon="trash" v-on:click="deleteItem(item)" class="menu-item" />
       </div>
     </div>
   </div>
+  <form v-on:submit.prevent="update" v-if="isEditing" class="item">
+    <div>&nbsp;</div>
+    <input class="edit-input" v-model="editedName" type="text"/>
+    
+    <div>
+      <input class="edit-input" v-model="editedPrice" type="number"/>
+      <fa-icon icon="check" class="menu-item" v-on:click="update" />
+      <fa-icon icon="ban" class="menu-item" v-on:click="toggleEdit" />
+      <input type="submit" style="display: none" />
+    </div>  
+  </form> 
+</div>
 </template>
 
 <script>
@@ -28,11 +40,14 @@ export default {
     let self = this;
     return {
       purchased: self.item.purchased,
-      isMenuOpen: false
+      isMenuOpen: false,
+      isEditing: false,
+      editedName: self.item.name,
+      editedPrice: self.item.price
     }
   },
   methods: {
-    update: async function() {
+    togglePurchase: async function() {
       try {
         await itemService.updateItem(
           this.budgetId,
@@ -48,8 +63,24 @@ export default {
         this.purchased = !this.purchased
       }
     },
+    update: async function() {      
+      await itemService.updateItem(
+        this.budgetId,
+        this.recipientId,
+        this.item.id,
+        this.editedName,
+        this.editedPrice,
+        this.purchased);
+
+      this.item.name = this.editedName;
+      this.item.price = this.editedPrice;
+      this.isEditing = false;      
+    },
     toggleMenu: function () {
       this.isMenuOpen = !this.isMenuOpen;
+    },
+    toggleEdit: function () {
+      this.isEditing = !this.isEditing;
     }
   }
 }
@@ -96,6 +127,10 @@ div#edit div {
   margin-left: 15px;
   cursor: pointer;
   /* font-size: 0.9rem; */
+}
+.edit-input {
+  font-size: 0.9rem;
+  padding: 5px 5px;
 }
 @media only screen and (max-width: 550px) {
   .item {
