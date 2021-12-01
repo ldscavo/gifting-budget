@@ -5,19 +5,9 @@
     <div>
       <span class="price">{{ parseFloat(item.price) | currency }}</span>
       <div id="edit-container">
-        <fa-icon
-          id="edit-toggle"
-          icon="ellipsis-v"
-          v-on:click="toggleMenu" />
-        <div id="edit" v-if="isMenuOpen">
-          <!-- <div
-            v-if="!isEditing"
-            v-on:click="isEditing = true"
-            class="menu-item edit"><fa-icon icon="edit"/> Edit</div> -->
-          <div
-            v-on:click="deleteItem(item)"
-            class="menu-item delete"><fa-icon icon="trash"/> Delete</div>
-        </div>
+        <div
+          v-on:click="deleteItem(item)"
+          class="menu-item delete"><fa-icon icon="trash"/></div>
       </div>
     </div>
   </div>
@@ -103,6 +93,17 @@ div#edit div {
   margin: 5px 5px 5px 15px;
 }
 .menu-item {
+  margin-left: 15px;
   cursor: pointer;
+  /* font-size: 0.9rem; */
+}
+@media only screen and (max-width: 550px) {
+  .item {
+    padding:7.5px;
+  }
+  .menu-item {
+    font-size: 0.9rem;
+    margin-left: 10px;
+  }
 }
 </style>
