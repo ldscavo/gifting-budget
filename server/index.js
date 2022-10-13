@@ -28,5 +28,7 @@ app.use('*', (req, res, next) => {
   return res.status(404).json({error:"invalid request"})
 });
 
-app.listen(8080);
-console.log('server started');
+var port = process.env.PORT || 5000;
+
+app.listen(port);
+console.log('server started on port: '+ port);
