@@ -11,7 +11,9 @@
     "start:api": "node ./server",
     "dev:ui": "cd client && vue-cli-service serve",
     "dev:api": "nodemon ./server",
-    "dev": "npm-run-all -p dev:api dev:ui"
+    "dev": "npm-run-all -p dev:api dev:ui",
+    "migrate": "knex migrate:latest --env production",
+    "rollback": "knex migrate:rollback"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",

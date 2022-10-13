@@ -1,3 +1,3 @@
 web: npm run start:api
-migrate: knex migrate:latest --env production
-rollback: knex migrate:rollback
+migrate: npm run migrate
+rollback: npm run rollback
