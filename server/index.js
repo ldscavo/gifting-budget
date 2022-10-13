@@ -29,4 +29,4 @@ app.use('*', (req, res, next) => {
 });
 
 app.listen(8080);
-console.log('server started '+ port);
+console.log('server started');
