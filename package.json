@@ -12,7 +12,7 @@
     "dev:ui": "cd client && vue-cli-service serve",
     "dev:api": "nodemon ./server",
     "dev": "npm-run-all -p dev:api dev:ui",
-    "migrate": "knex migrate:latest --env production",
+    "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback"
   },
   "dependencies": {
