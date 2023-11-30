@@ -122,4 +122,8 @@ input.edit-field:focus {
   color: red;
   font-weight: bold;
 }
+.form-error {
+  color: red;
+  font-size: 0.9rem;
+}
 </style>

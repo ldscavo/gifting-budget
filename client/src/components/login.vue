@@ -10,6 +10,9 @@
         <label for="password">Password:</label>
         <input id="password" class="form-input text" v-model="password" type="password" />
       </div>
+      <div class="form-error" v-if="error">
+        <span>{{ error }}</span>
+      </div>
       <div class="form-section">
         <button type="submit" class="form-input">Login &raquo;</button>                
       </div>
@@ -28,7 +31,8 @@ export default {
   data: function() {
     return {
       email: "",
-      password: ""
+      password: "",
+      error: ""
     }
   },
   methods: {
@@ -40,7 +44,7 @@ export default {
         this.$router.push({ path: '/budgets' });
       }
       catch (error) {
-        alert(error.response.data.error)
+        this.error = error.response.data.error;
       }
     }
 }

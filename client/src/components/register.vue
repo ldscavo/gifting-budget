@@ -15,6 +15,9 @@
         <input id="passwordconfirm" class="form-input text" v-model="passwordconfirm" type="password" />
         <div class="warning" v-if="password !== passwordconfirm">Passwords do not match!</div>
       </div>
+      <div class="form-error" v-if="error">
+        <span>{{ error }}</span>
+      </div>
       <div class="form-section">
         <button type="submit" class="form-input">Register &raquo;</button>
       </div>
@@ -31,7 +34,8 @@ export default {
     return {
       email: '',
       password: '',
-      passwordconfirm: ''
+      passwordconfirm: '',
+      error: ''
     }
   },
   methods: {
@@ -43,7 +47,7 @@ export default {
         this.$router.push({ path: '/budgets' });
       }
       catch (error) {
-        alert(error.response.data.error);
+        this.error = error.response.data.error;
       }
     }
   }
