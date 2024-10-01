@@ -7,7 +7,7 @@ module.exports = {
 
   getItemById: async id =>
     await knex('items')
-      .where({ id: req.params.id })
+      .where({ id: id })
       .first(),
 
   addItemToRecipient: async (recipientId, item) => {
