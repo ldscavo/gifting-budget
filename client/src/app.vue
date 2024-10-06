@@ -2,7 +2,7 @@
   <div id="app">
     <header-bar-v2 />
     <router-view></router-view>
-    <footer-bar />
+    <footer-v2 />
   </div>
 </template>
 
@@ -10,26 +10,28 @@
 import headerBar from './components/headerBar'
 import headerBarV2 from './components/headerBarV2'
 import footerBar from './components/footerBar'
+import footerV2 from './components/footerV2'
 
 export default {
   name: 'app',
   components: {
     headerBar,
     headerBarV2,
-    footerBar
+    footerBar,
+    footerV2
   }
 }
 </script>
 
 <style>
-html {
+/* html {
   background-color: #ddd ;
   width:100%;
 }
 body {
   padding: 0;
   margin: 0;
-}
+} */
 a {
   color: #973735;
   text-decoration: none;
@@ -62,7 +64,6 @@ button[type=reset]:hover {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 .add-entry {
   display: flex;
