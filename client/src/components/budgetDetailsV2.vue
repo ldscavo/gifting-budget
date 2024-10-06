@@ -10,7 +10,9 @@
                 <div class="cell"><strong>Remaining</strong></div>
                 <div class="cell">{{ totalAllocated() | currency }}</div>
                 <div class="cell">{{ totalSpent() | currency }}</div>
-                <div class="cell">{{ remainingBalance() | currency }}</div>
+                <div class="cell" v-bind:class="{ 'over-budget': remainingBalance() < 0 }">
+                    {{ remainingBalance() | currency }}
+                </div>
             </div>
         </div>
     </div>
