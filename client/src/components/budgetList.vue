@@ -9,8 +9,8 @@
       <budget-card v-for="budget in budgets"
           v-bind:key="budget.id"
           v-bind:budget="budget" />
-    </div>    
-    <add-budget />
+    </div>
+    <add-budget-v2 />
   </div>
 </template>
 
@@ -18,6 +18,7 @@
 import budgetService from '../services/budgetService';
 import budgetCard from './budgetCard'
 import addBudget from './addBudget'
+import addBudgetV2 from './addBudgetV2'
 
 export default {
   name: 'budgetList',
@@ -29,7 +30,8 @@ export default {
   },
   components: {
     budgetCard,
-    addBudget
+    addBudget,
+    addBudgetV2
   },
   mounted: async function() {
     let response = await budgetService.getAllBudgets();
