@@ -4,12 +4,11 @@
         <div class="fixed-grid has-5-cols">
             <div class="grid is-gap-0">
                 <div class="cell"><strong>Budgeted</strong></div>
-                <div class="cell is-row-span-2 symbol">+</div>
+                <div class="cell is-row-span-2 symbol">-</div>
                 <div class="cell"><strong>Spent</strong></div>
                 <div class="cell is-row-span-2 symbol">=</div>
                 <div class="cell"><strong>Remaining</strong></div>
                 <div class="cell">{{ totalAllocated() | currency }}</div>
-
                 <div class="cell">{{ totalSpent() | currency }}</div>
                 <div class="cell">{{ remainingBalance() | currency }}</div>
             </div>
