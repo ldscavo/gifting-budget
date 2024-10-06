@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header-bar />
+    <header-bar-v2 />
     <router-view></router-view>
     <footer-bar />
   </div>
@@ -8,12 +8,14 @@
 
 <script>
 import headerBar from './components/headerBar'
+import headerBarV2 from './components/headerBarV2'
 import footerBar from './components/footerBar'
 
 export default {
   name: 'app',
   components: {
     headerBar,
+    headerBarV2,
     footerBar
   }
 }
