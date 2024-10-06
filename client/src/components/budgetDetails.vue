@@ -51,7 +51,6 @@ export default {
 .budget-details {    
   border:1px solid #a2a2a2;
   border-top: none;
-  background-color: #fafafa;
   padding: 5px;
   padding-bottom: 15px;
   margin-bottom: 10px;

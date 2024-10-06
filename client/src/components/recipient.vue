@@ -100,7 +100,6 @@ export default {
 <style scoped>
 .recipient {
   border: 1px solid #a2a2a2;
-  background-color: #fafafa;
   max-width: 820px;
   margin: -1px auto;
   padding-bottom: 10px;
