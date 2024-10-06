@@ -1,6 +1,6 @@
 <template>
   <div class="budget-details">
-    <h1>{{ budget.name }}</h1>
+    <h1 class="title">{{ budget.name }}</h1>
     <table>
       <tr>
         <th>Budgeted: </th>

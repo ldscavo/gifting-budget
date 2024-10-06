@@ -12,7 +12,7 @@
           class="toolbar-item edit"><fa-icon icon="edit"/></div>
         <div
           v-on:click="deleteRecipient(recipient)"
-          class="toolbar-item delete"><fa-icon icon="trash"/></div>
+          class="toolbar-item remove"><fa-icon icon="trash"/></div>
         </div>      
     </div>
     <div v-if="!isEditing">

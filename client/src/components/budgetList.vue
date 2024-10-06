@@ -1,6 +1,6 @@
 <template>
   <div id="budget-list-container">
-    <h1>My Budgets</h1>
+    <h1 class="title">My Budgets</h1>
     <clip-loader
       v-if="loading"
       size="80"
@@ -45,6 +45,11 @@ export default {
   margin: 0 auto;
   max-width: 960px;
 }
+
+h1 {
+  margin: 10px auto;
+}
+
 #budget-list {
   padding:15px 50px;
   display: flex;

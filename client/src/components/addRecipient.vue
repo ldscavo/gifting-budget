@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <form class="add-entry add-recipient" v-if="isAdding" v-on:submit.prevent="addRecipient">
-      <h4>Add a Recipient</h4>
       <div class="add-entry-field">
         <label for="recipient-name">Name:</label>
         <input class="form-input" type="text" v-model="name" id="recipient-name" placeholder="Recipient Name" />
