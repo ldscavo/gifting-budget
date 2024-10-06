@@ -1,14 +1,9 @@
 <template>
-  <div id="budget-list-container">
+  <div class="container is-widescreen">
     <h1 class="title">My Budgets</h1>
-    <clip-loader
-      v-if="loading"
-      size="80"
-      color="#973735" />
-    <div class="grid">            
-      <budget-card-v2 v-for="budget in budgets"
-          v-bind:key="budget.id"
-          v-bind:budget="budget" />
+    <clip-loader v-if="loading" size="80" color="#973735" />
+    <div class="grid is-col-min-9">
+      <budget-card-v2 v-for="budget in budgets" v-bind:key="budget.id" v-bind:budget="budget" />
     </div>
     <add-budget-v2 />
   </div>
