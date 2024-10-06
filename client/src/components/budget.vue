@@ -6,7 +6,7 @@
       color="#973735" />
   </div>
   <div class="budget" v-if="budget !== null">        
-    <budget-details v-bind:budget="budget" />
+    <budget-details-v2 v-bind:budget="budget" />
     <recipient
       v-for="recipient in budget.recipients"
       v-bind:key="recipient.name"
@@ -23,6 +23,7 @@
 <script>
 import _ from 'lodash'
 import budgetDetails from './budgetDetails'
+import budgetDetailsV2 from './budgetDetailsV2'
 import recipient from './recipient'
 import addRecipient from './addRecipient'
 import budgetService from '../services/budgetService'
@@ -32,6 +33,7 @@ export default {
   name: 'budget',
   components: {
     budgetDetails,
+    budgetDetailsV2,
     recipient,
     addRecipient
   },
