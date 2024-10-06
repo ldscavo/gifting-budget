@@ -5,8 +5,8 @@
       v-if="loading"
       size="80"
       color="#973735" />
-    <div id="budget-list">            
-      <budget-card v-for="budget in budgets"
+    <div class="grid">            
+      <budget-card-v2 v-for="budget in budgets"
           v-bind:key="budget.id"
           v-bind:budget="budget" />
     </div>
@@ -17,6 +17,7 @@
 <script>
 import budgetService from '../services/budgetService';
 import budgetCard from './budgetCard'
+import budgetCardV2 from './budgetCardV2'
 import addBudget from './addBudget'
 import addBudgetV2 from './addBudgetV2'
 
@@ -30,6 +31,7 @@ export default {
   },
   components: {
     budgetCard,
+    budgetCardV2,
     addBudget,
     addBudgetV2
   },
@@ -50,12 +52,5 @@ export default {
 
 h1 {
   margin: 10px auto;
-}
-
-#budget-list {
-  padding:15px 50px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 </style>
