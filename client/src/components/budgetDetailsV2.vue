@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1 class="title">{{ budget.name }}</h1>
+        <h1 class="title is-4">{{ budget.name }}</h1>
         <div class="fixed-grid has-5-cols">
             <div class="grid is-gap-0">
                 <div class="cell"><strong>Budgeted</strong></div>

@@ -38,7 +38,7 @@ a {
   font-weight: bold;
 }
 a:hover {
-  border-bottom: 2px solid #973735;
+  /* border-bottom: 2px solid #973735; */
   cursor: pointer;
 }
 button {
