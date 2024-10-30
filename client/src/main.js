@@ -5,7 +5,7 @@ import router from './infrastructure/router'
 import "./infrastructure/filters"
 
 import { VueSpinners } from '@saeris/vue-spinners'
-
+import Fragment from 'vue-fragment'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faEdit,
@@ -23,6 +23,7 @@ Vue.config.productionTip = false;
 
 Vue.use(Router);
 Vue.use(VueSpinners);
+Vue.use(Fragment.Plugin)
 Vue.component('fa-icon', FontAwesomeIcon);
 
 new Vue({

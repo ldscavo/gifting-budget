@@ -13,7 +13,7 @@
         <div
           v-on:click="deleteRecipient(recipient)"
           class="toolbar-item remove"><fa-icon icon="trash"/></div>
-        </div>      
+      </div>      
     </div>
     <div v-if="!isEditing">
       <recipient-details

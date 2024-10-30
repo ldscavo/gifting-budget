@@ -1,23 +1,26 @@
 <template>
-<div>
-  <div id="loading" v-if="loading">
-    <clip-loader
-      size="80"
-      color="#973735" />
+  <div>
+    <div id="loading" v-if="loading">
+      <clip-loader size="80" color="#973735" />
+    </div>
+    <div class="budget" v-if="budget !== null">
+      <budget-details-v2 v-bind:budget="budget" />
+      <!-- <recipients-v2
+        v-bind:recipients="budget.recipients"
+        v-bind:budgetId="budget.id"
+        v-bind:deleteRecipient="deleteRecipient" /> -->
+      <recipient
+        v-for="recipient in budget.recipients"
+        v-bind:key="recipient.name"
+        v-bind:recipient="recipient"
+        v-bind:budgetId="budget.id"
+        v-bind:deleteRecipient="deleteRecipient" />
+
+      <add-recipient
+        v-bind:recipients="budget.recipients"
+        v-bind:budgetId="budget.id" />
+    </div>
   </div>
-  <div class="budget" v-if="budget !== null">        
-    <budget-details-v2 v-bind:budget="budget" />
-    <recipient
-      v-for="recipient in budget.recipients"
-      v-bind:key="recipient.name"
-      v-bind:recipient="recipient"
-      v-bind:budgetId="budget.id"
-      v-bind:deleteRecipient="deleteRecipient" />
-    <add-recipient
-      v-bind:recipients="budget.recipients"
-      v-bind:budgetId="budget.id" />
-  </div>
-</div>
 </template>
 
 <script>
@@ -25,6 +28,7 @@ import _ from 'lodash'
 import budgetDetails from './budgetDetails'
 import budgetDetailsV2 from './budgetDetailsV2'
 import recipient from './recipient'
+import recipientsV2 from './recipientsV2'
 import addRecipient from './addRecipient'
 import budgetService from '../services/budgetService'
 import recipientService from '../services/recipientService'
@@ -35,6 +39,7 @@ export default {
     budgetDetails,
     budgetDetailsV2,
     recipient,
+    recipientsV2,
     addRecipient
   },
   props: {
