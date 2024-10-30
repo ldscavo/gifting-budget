@@ -39,11 +39,11 @@
 <script>
 import _ from 'lodash'
 
-import recipientDetails from './recipientDetails'
-import recipientMinimized from './recipientMinimized'
-import item from './item'
-import addItem from './addItem'
-import editRecipient from './editRecipient'
+import recipientDetails from './recipientDetails.vue'
+import recipientMinimized from './recipientMinimized.vue'
+import item from './item.vue'
+import addItem from './addItem.vue'
+import editRecipient from './editRecipient.vue'
 
 import recipientService from '../services/recipientService'
 

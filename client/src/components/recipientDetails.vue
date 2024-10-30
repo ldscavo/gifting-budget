@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import addItem from './addItem'
-import item from './item'
+import addItem from './addItem.vue'
+import item from './item.vue'
 
 import itemService from '../services/itemService'
 

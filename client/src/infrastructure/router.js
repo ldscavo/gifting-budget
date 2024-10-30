@@ -1,8 +1,8 @@
 import Router from 'vue-router'
-import budget from '../components/budget'
-import budgetList from '../components/budgetList'
-import login from '../components/login'
-import register from '../components/register'
+import budget from '../components/budget.vue'
+import budgetList from '../components/budgetList.vue'
+import login from '../components/login.vue'
+import register from '../components/register.vue'
 
 var router = new Router({
   routes: [

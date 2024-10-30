@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import headerBar from './components/headerBar'
-import headerBarV2 from './components/headerBarV2'
-import footerBar from './components/footerBar'
-import footerV2 from './components/footerV2'
+import headerBar from './components/headerBar.vue'
+import headerBarV2 from './components/headerBarV2.vue'
+import footerBar from './components/footerBar.vue'
+import footerV2 from './components/footerV2.vue'
 
 export default {
   name: 'app',

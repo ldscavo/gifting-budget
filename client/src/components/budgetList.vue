@@ -11,10 +11,10 @@
 
 <script>
 import budgetService from '../services/budgetService';
-import budgetCard from './budgetCard'
-import budgetCardV2 from './budgetCardV2'
-import addBudget from './addBudget'
-import addBudgetV2 from './addBudgetV2'
+import budgetCard from './budgetCard.vue'
+import budgetCardV2 from './budgetCardV2.vue'
+import addBudget from './addBudget.vue'
+import addBudgetV2 from './addBudgetV2.vue'
 
 export default {
   name: 'budgetList',

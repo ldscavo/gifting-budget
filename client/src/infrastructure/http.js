@@ -2,7 +2,7 @@ import axios from 'axios';
 
 let http = 
   axios.create({
-    baseURL: process.env.VUE_APP_API_URL
+    baseURL: import.meta.env.VITE_API_URL
   });
 
 let headers = () =>

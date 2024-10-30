@@ -25,11 +25,11 @@
 
 <script>
 import _ from 'lodash'
-import budgetDetails from './budgetDetails'
-import budgetDetailsV2 from './budgetDetailsV2'
-import recipient from './recipient'
-import recipientsV2 from './recipientsV2'
-import addRecipient from './addRecipient'
+import budgetDetails from './budgetDetails.vue'
+import budgetDetailsV2 from './budgetDetailsV2.vue'
+import recipient from './recipient.vue'
+import recipientsV2 from './recipientsV2.vue'
+import addRecipient from './addRecipient.vue'
 import budgetService from '../services/budgetService'
 import recipientService from '../services/recipientService'
 

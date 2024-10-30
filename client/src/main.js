@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import app from './app'
+import app from './app.vue'
 import router from './infrastructure/router'
 import "./infrastructure/filters"
 

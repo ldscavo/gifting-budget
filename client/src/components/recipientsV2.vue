@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import recipientV2 from './recipientV2'
+import recipientV2 from './recipientV2.vue'
 
 export default {
     name: 'recipientsV2',
