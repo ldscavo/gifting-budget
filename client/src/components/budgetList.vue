@@ -1,6 +1,7 @@
 <template>
   <div class="budget-list-container">
     <h1 class="title is-4">My Budgets</h1>
+    <Test />
     <clip-loader v-if="loading" size="80" color="#973735" />
     <div class="grid">
       <budget-card-v2 v-for="budget in budgets" v-bind:key="budget.id" v-bind:budget="budget" />

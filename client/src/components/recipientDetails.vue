@@ -42,7 +42,7 @@
 import addItem from './addItem.vue'
 import item from './item.vue'
 
-import itemService from '../services/itemService'
+import { deleteItem } from '../services/itemService'
 
 export default {
   name: 'recipientDetails',
@@ -61,7 +61,7 @@ export default {
       if (!confirm(`Are you sure you'd like to delete '${item.name}'? This cannot be undone.`))
         return;
 
-      await itemService.deleteItem(this.budgetId, this.recipient.id, item.id);
+      await deleteItem(this.budgetId, this.recipient.id, item.id);
       
       this.recipient.items = this.recipient.items.filter(i => i.id != item.id);
     }

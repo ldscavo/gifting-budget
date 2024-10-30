@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import itemService from '../services/itemService';
+import { createItem } from '../services/itemService';
 
 export default {
   name: "addItem",
@@ -44,7 +44,7 @@ export default {
       if (this.name != "" && this.price > 0) {
         this.loading = true;
 
-        let response = await itemService.createItem(this.budgetId, this.recipientId, this.name, this.price);
+        let response = await createItem(this.budgetId, this.recipientId, this.name, this.price);
           
         this.items.push(response.data.data);
         this.clear();        

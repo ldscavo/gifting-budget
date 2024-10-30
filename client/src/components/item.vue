@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import itemService from '../services/itemService';
+import { updateItem } from '../services/itemService';
 
 export default {
   name: "item",
@@ -49,7 +49,7 @@ export default {
   methods: {
     togglePurchase: async function() {
       try {
-        await itemService.updateItem(
+        await updateItem(
           this.budgetId,
           this.recipientId,
           this.item.id,
@@ -64,7 +64,7 @@ export default {
       }
     },
     update: async function() {      
-      await itemService.updateItem(
+      await updateItem(
         this.budgetId,
         this.recipientId,
         this.item.id,
