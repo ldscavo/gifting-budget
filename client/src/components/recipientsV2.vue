@@ -5,8 +5,12 @@
             <th class="dollars">Budgeted</th>
             <th class="dollars">Remaining</th>
         </tr>
-        <recipient-v2 v-for="recipient in recipients" v-bind:key="recipient.name" v-bind:recipient="recipient"
-            v-bind:budgetId="budgetId" v-bind:deleteRecipient="deleteRecipient" />
+        <recipient-v2
+            v-for="recipient in recipients"
+            v-bind:key="recipient.name"
+            v-bind:recipient="recipient"
+            v-bind:budgetId="budgetId"
+            v-bind:deleteRecipient="deleteRecipient" />
     </table>
 </template>
 

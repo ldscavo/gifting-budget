@@ -5,17 +5,20 @@
     </div>
     <div class="budget" v-if="budget !== null">
       <budget-details-v2 v-bind:budget="budget" />
-      <!-- <recipients-v2
+      <!--
+      <recipients-v2
         v-bind:recipients="budget.recipients"
         v-bind:budgetId="budget.id"
-        v-bind:deleteRecipient="deleteRecipient" /> -->
+        v-bind:deleteRecipient="deleteRecipient" />
+      -->
+
       <recipient
         v-for="recipient in budget.recipients"
         v-bind:key="recipient.name"
         v-bind:recipient="recipient"
         v-bind:budgetId="budget.id"
         v-bind:deleteRecipient="deleteRecipient" />
-
+     
       <add-recipient
         v-bind:recipients="budget.recipients"
         v-bind:budgetId="budget.id" />

@@ -4,8 +4,8 @@
             <td class="recipient-name">
                 <span class="icon-text">
                     <span class="icon" v-on:click="showhide()">
-                        <i v-if="!collapsed" class="fas fa-chevron-down chevron"></i>
-                        <i v-if="collapsed" class="fas fa-chevron-right chevron"></i>
+                        <span v-if="!collapsed"><fa-icon icon="chevron-down"/></span>
+                        <span v-if="collapsed"><fa-icon icon="chevron-right"/></span>
                     </span>
                     <span>{{ recipient.name }}</span>
                 </span>
@@ -19,38 +19,18 @@
                 </span>
             </td>
         </tr>
-        <tr class="item-list" v-if="!collapsed">
-            <td class="item-list" colspan="3">
-                <table class="table is-borderedd is-fullwidth item-list">
+        <tr v-if="!collapsed">
+            <td colspan="3">
+                <table class="table is-fullwidth item-list">
+                    <item-v2
+                        v-for="item in recipient.items"
+                        v-bind:key="item.id"
+                        v-bind:budgetid="budgetId"
+                        v-bind:recipientId="recipient.id"
+                        v-bind:item="item" />
                     <tr>
-                        <td>
-                            <input type="checkbox" checked />
-                        </td>
-                        <td>A Whole Pizza</td>
-                        <td>$5.99</td>
-                        <td>
-                            <span v-if="!isEditing" v-on:click="isEditing = true" class="toolbar-item edit"><fa-icon
-                                    icon="edit" /></span>
-                            <span v-on:click="deleteRecipient(recipient)" class="toolbar-item remove"><fa-icon
-                                    icon="trash" /></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" checked />
-                        </td>
-                        <td>A Whole Pizza</td>
-                        <td>$5.99</td>
-                        <td>
-                            <span v-if="!isEditing" v-on:click="isEditing = true" class="toolbar-item edit"><fa-icon
-                                    icon="edit" /></span>
-                            <span v-on:click="deleteRecipient(recipient)" class="toolbar-item remove"><fa-icon
-                                    icon="trash" /></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">Total:</th>
-                        <td>$500.00</td>
+                        <th colspan="2"></th>
+                        <td class="dollars"><strong>{{ totalSpent() }}</strong></td>
                     </tr>
                 </table>
             </td>
@@ -65,6 +45,7 @@ import _ from 'lodash'
 import recipientDetails from './recipientDetails.vue'
 import recipientMinimized from './recipientMinimized.vue'
 import item from './item.vue'
+import itemV2 from './itemV2.vue'
 import addItem from './addItem.vue'
 import editRecipient from './editRecipient.vue'
 
@@ -81,6 +62,7 @@ export default {
         recipientDetails,
         recipientMinimized,
         item,
+        itemV2,
         addItem,
         editRecipient
     },
@@ -132,6 +114,7 @@ td.dollars {
 }
 .item-list {
     margin-top: 0px;
+    border: 1px solid #000;
 }
 .toolbar-item {
     text-align: center;
