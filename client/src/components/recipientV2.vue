@@ -29,8 +29,11 @@
                         v-bind:recipientId="recipient.id"
                         v-bind:item="item" />
                     <tr>
-                        <th colspan="2"></th>
-                        <td class="dollars"><strong>{{ totalSpent() }}</strong></td>
+                        <td colspan="2"></td>
+                        <td class="dollars">
+                            Total:&nbsp;&nbsp;&nbsp;
+                            <strong>{{ totalSpent() | currency }}</strong>
+                        </td>
                     </tr>
                 </table>
             </td>

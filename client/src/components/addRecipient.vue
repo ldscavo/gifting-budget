@@ -1,22 +1,23 @@
 <template>
   <div class="container">
-    <form class="add-entry add-recipient" v-if="isAdding" v-on:submit.prevent="addRecipient">
-      <div class="add-entry-field">
-        <label for="recipient-name">Name:</label>
-        <input class="form-input" type="text" v-model="name" id="recipient-name" placeholder="Recipient Name" />
-      </div>
-      <div class="add-entry-field">
-        <label for="recipient-price">Amount:</label>
-        $<input class="form-input" type="number" v-model="amount" id="recipient-amount" step="0.01" />
-      </div>   
-      <div class="add-entry-field" v-if="!loading">
-        <button type="reset" v-on:click="toggleForm">Cancel</button>
-        <button type="submit">Add Recipient &raquo;</button>
-      </div>
-      <beat-loader
-        v-if="loading"
-        color="#973735" />
-    </form>
+    <div class="box add-recipient" v-if="isAdding">
+      <form class="add-entry" v-on:submit.prevent="addRecipient">
+        <h1 class="title is-5">New Recipient</h1>
+        <div class="add-entry-field">
+          <label class="label" for="recipient-name">Name:</label>
+          <input class="form-input" type="text" v-model="name" id="recipient-name" placeholder="Recipient Name" />
+        </div>
+        <div class="add-entry-field">
+          <label class="label" for="recipient-price">Amount:</label>
+          $<input class="form-input" type="number" v-model="amount" id="recipient-amount" step="0.01" />
+        </div>   
+        <div class="add-entry-field" v-if="!loading">
+          <button type="reset" v-on:click="toggleForm">Cancel</button>
+          <button type="submit">Add Recipient &raquo;</button>
+        </div>
+        <beat-loader v-if="loading" color="#973735" />
+      </form>
+    </div>
     <a v-if="!isAdding" v-on:click="toggleForm">+ Add New Recipient</a>
   </div>
 </template>
@@ -69,8 +70,6 @@ export default {
 }
 .add-recipient {
   max-width: 500px;
-  padding: 15px;
   margin: 0 auto 100px;
-  background: #fefefe;
 }
 </style>

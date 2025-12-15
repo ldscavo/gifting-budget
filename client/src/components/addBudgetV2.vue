@@ -2,16 +2,11 @@
     <div class="container">
         <div class="box new-budget" v-if="isAdding">
             <form v-on:submit.prevent="addBudget">
+                <h1 class="title is-5">New Budget</h1>
                 <div class="field">
-                    <label class="label">Name</label>
+                    <label class="label">Name:</label>
                     <div class="control">
                         <input class="input" type="text" v-model="name" placeholder="My Event" />
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Amount</label>
-                    <div class="control">
-                        <input class="input" type="number" step="1" v-model="amount" />
                     </div>
                 </div>
                 <div class="field is-grouped">
@@ -40,7 +35,6 @@ export default {
         return {
             isAdding: false,
             name: "",
-            amount: 0,
             loading: false
         }
     },
@@ -51,7 +45,7 @@ export default {
         addBudget: async function () {
             this.loading = true;
 
-            let response = await budgetService.createBudget(this.name, this.amount);
+            let response = await budgetService.createBudget(this.name);
 
             this.$router.push({ path: `/budget/${response.data.data.id}` });
         }
@@ -63,5 +57,8 @@ export default {
 .new-budget {
     max-width: 500px;
     margin: 0 auto;
+}
+.label {
+    text-align: left;
 }
 </style>
