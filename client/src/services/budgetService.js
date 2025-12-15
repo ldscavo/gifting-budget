@@ -7,6 +7,6 @@ export default {
   getBudget: (id) =>
     http.get(`/api/budgets/${id}/expanded`),
 
-  createBudget: (name, amount) =>
-    http.post('/api/budgets', {name, amount})
+  createBudget: (name) =>
+    http.post('/api/budgets', {name})
 }

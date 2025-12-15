@@ -6,7 +6,13 @@ let _ = require('lodash');
 router.get('/budgets', async (req, res) => {
   let budgets =
     await knex('budgets')
-      .where({ userId: req.userId });
+      .select(
+        'budgets.*',
+        knex.raw('coalesce(sum(r.amount), 0) as amount')
+      )
+      .leftJoin('recipients as r', 'r.budgetId', 'budgets.id')
+      .where({ userId: req.userId })
+      .groupBy('budgets.id', 'budgets.userId');
 
   return res.json({ data: budgets });
 });
@@ -28,7 +34,6 @@ router.get('/budgets/:id/expanded', async (req, res) => {
       .select(
         'b.id as b_id',
         'b.name as b_name',
-        'b.amount as b_amount',
         'r.id as r_id',
         'r.name as r_name',
         'r.amount as r_amount',
@@ -50,13 +55,15 @@ router.get('/budgets/:id/expanded', async (req, res) => {
 });
 
 let parseExpandedBudget = data => {
-  let budget = { id: data[0].b_id, name: data[0].b_name, amount: parseFloat(data[0].b_amount) };
+  let budget = { id: data[0].b_id, name: data[0].b_name, };
 
   budget.recipients = _.map(
     _.uniqBy(_.filter(data, recipient => recipient.r_id), d => d.r_id), r => {
       return { id: r.r_id, name: r.r_name, amount: parseFloat(r.r_amount) }
     }
   );
+
+  budget.amount = _.sumBy(budget.recipients, r => r.amount);
 
   budget.recipients.forEach(recipient => {
     recipient.items = _.map(_.filter(data, item => item.i_id && item.r_id == recipient.id), i => {
