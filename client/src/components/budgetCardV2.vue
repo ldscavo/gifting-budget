@@ -23,13 +23,13 @@
                 <!--     <strong>Spent:</strong> -->
                 <!--     <br />{{ parseFloat(budget.spent) | currency }} -->
                 <!-- </div> -->
-                <div>
-                    <strong>Remaining</strong>
-                    <br />
-                    <span v-bind:class="{ 'over-budget': remainingBalance(budget) < 0 }">
-                        {{ remainingBalance(budget) | currency }}
-                    </span >
-                </div>
+                <!-- <div> -->
+                <!--     <strong>Remaining</strong> -->
+                <!--     <br /> -->
+                <!--     <span v-bind:class="{ 'over-budget': remainingBalance(budget) < 0 }"> -->
+                <!--         {{ remainingBalance(budget) | currency }} -->
+                <!--     </span > -->
+                <!-- </div> -->
                 <div>
                     <strong>Last Updated</strong>
                     <br />{{ budget.updated_at | date }}
