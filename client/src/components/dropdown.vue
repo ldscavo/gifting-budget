@@ -1,14 +1,13 @@
 <template>
-  <div class="dropdown is-active">
+  <div class="dropdown is-right" v-bind:class="{ 'is-active': expanded }">
     <div class="dropdown-trigger">
       <button class="button is-shadowless" v-on:click="toggle()">
         <span class="icon is-small">
           <fa-icon icon="ellipsis-v" />
-          <!-- <fa-icon icon="angle-down" /> -->
         </span>
       </button>
     </div>
-    <div v-if="expanded" v-on:click="close()" class="dropdown-menu" id="dropdown-menu" role="menu">
+    <div v-on:click="close()" class="dropdown-menu" id="dropdown-menu" role="menu">
       <div class="dropdown-content">
         <slot></slot>
       </div>
