@@ -5,15 +5,17 @@
         <span v-if="!collaped"><fa-icon icon="chevron-down"/></span>
         <span v-if="collaped"><fa-icon icon="chevron-right"/></span>
       </div>
-      <div class="toolbar-crud">
-        <div
-          v-if="!isEditing"
-          v-on:click="isEditing = true"
-          class="toolbar-item edit"><fa-icon icon="edit"/></div>
-        <div
-          v-on:click="deleteRecipient(recipient)"
-          class="toolbar-item remove"><fa-icon icon="trash"/></div>
-      </div>      
+        <dropdown title="Edit" v-if="!isEditing">
+          <a
+            v-if="!isEditing"
+            v-on:click="isEditing = true"
+            class="dropdown-item edit">
+            <span class="icon-text"><fa-icon icon="edit"/>Edit</span></a>
+          <a
+            v-on:click="deleteRecipient(recipient)"
+            class="dropdown-item remove">
+            <span class="icon-text"><fa-icon icon="trash"/> Delete</span></a>
+        </dropdown>
     </div>
     <div v-if="!isEditing">
       <recipient-details
@@ -44,6 +46,7 @@ import recipientMinimized from './recipientMinimized.vue'
 import item from './item.vue'
 import addItem from './addItem.vue'
 import editRecipient from './editRecipient.vue'
+import dropdown from './dropdown.vue'
 
 import recipientService from '../services/recipientService'
 
@@ -59,7 +62,8 @@ export default {
     recipientMinimized,
     item,
     addItem,
-    editRecipient
+    editRecipient,
+    dropdown,
   },
   data: function(){
     return {

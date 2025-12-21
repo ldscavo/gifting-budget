@@ -14,10 +14,11 @@ import {
   faTrash,
   faEllipsisV,
   faBan,
-  faCheck } from '@fortawesome/free-solid-svg-icons'
+  faCheck,
+  faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faEdit, faChevronRight, faChevronDown, faTrash, faEllipsisV, faBan, faCheck);
+library.add(faEdit, faChevronRight, faChevronDown, faTrash, faEllipsisV, faBan, faCheck, faAngleDown);
 
 Vue.config.productionTip = false;
 
