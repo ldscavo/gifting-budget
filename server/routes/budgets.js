@@ -8,13 +8,18 @@ router.get('/budgets', async (req, res) => {
     await knex.raw(`
       select
         b.*,
-        coalesce(sum(r.amount), 0) as amount/*,
-        coalesce(sum(i.price), 0) as spent*/
+        coalesce(sum(r.amount), 0) as amount, 
+        ( select coalesce(sum(i.price), 0) as spent		
+          from "items" as i
+          join "recipients" as r on
+              r.id = i."recipientId" and
+              r."budgetId" = b.id
+          where i."recipientId" = r.id and i.purchased = true )
       from "budgets" as b
       left join "recipients" as r on r."budgetId" = b.id
-      --left join "items" as i on i."recipientId" = r.id and i.purchased = true
       where b."userId" = ?
-      group by b.id, b."userId"`, [req.userId]);
+      group by b.id, b."userId"
+`, [req.userId]);
 
   return res.json({ data: data.rows });
 });
