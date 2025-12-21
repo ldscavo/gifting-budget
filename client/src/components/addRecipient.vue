@@ -2,7 +2,7 @@
   <div class="container">
     <div class="box add-recipient" v-if="isAdding">
       <form class="add-entry" v-on:submit.prevent="addRecipient">
-        <h1 class="title is-5">New Recipient</h1>
+        <h1 class="title is-6">New Recipient</h1>
         <div class="add-entry-field">
           <label class="label" for="recipient-name">Name:</label>
           <input class="form-input" type="text" v-model="name" id="recipient-name" placeholder="Recipient Name" />

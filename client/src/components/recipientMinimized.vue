@@ -2,7 +2,9 @@
   <div class="recipient-summary" v-on:click="showHide">
     <span class="name">{{ recipient.name }}</span>
     <span class="totals">
-      <span class="spent">Spent: {{ total | currency }} out of {{ recipient.amount | currency }}</span>
+      <span class="spent">
+        Spent: {{ total | currency }} out of {{ recipient.amount | currency }}
+      </span>
       <span class="remaining">
         Remaining: <span v-bind:class="{ 'over-budget': remaining() < 0 }">{{ remaining() | currency }}</span>
       </span>
@@ -32,7 +34,7 @@ export default {
   margin: 15px auto;
 }
 .name {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 .spent::before, .spent::after {

@@ -60,7 +60,7 @@ button[type=reset]:hover {
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

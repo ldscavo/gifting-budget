@@ -2,7 +2,7 @@
     <div class="container">
         <div class="box new-budget" v-if="isAdding">
             <form v-on:submit.prevent="addBudget">
-                <h1 class="title is-5">New Budget</h1>
+                <h1 class="title is-6">New Budget</h1>
                 <div class="field">
                     <label class="label">Name:</label>
                     <div class="control">

@@ -1,6 +1,6 @@
 <template>
   <div class="recipient-details">
-    <h3 class="title is-5">{{ recipient.name }}</h3>
+    <h3 class="title is-6">{{ recipient.name }}</h3>
     <div>
       <table>
         <tr>
